@@ -10,10 +10,9 @@
         </div>
       </div>
       <div v-else>
-        <div v-bind:key="d.section" v-for="d in sections">
-          <!-- {{d.section}} -->
-          <Sections v-bind:sections="d.books" />
-        </div>
+        <!-- <div v-bind:key="d.id" v-for="d in sections"> -->
+          <Sections v-bind:sections="sections" />
+        <!-- </div> -->
       </div>
     </section>
   </div>
@@ -38,11 +37,12 @@ export default {
   created() {
     axios
       .get("https://api.masterbranch.io/b/bna")
-      // .then(response => (this.sections = response.data.body.data[0].data))
-      .then(
-        response => (this.sections = response.data.body.data[1].data)
+      .then(response => {
+          this.sections = response.data.body.data[0].data;
+        }
       )
-      .catch(error => {
+      // .then(response => (this.sections = response.data.body.data[1].data))
+      .catch(error => { 
         console.log(error);
         this.errored = true;
       })
