@@ -11,7 +11,7 @@
         </div>
       </div>
     </div>
-    <b-modal v-bind:id="info.id" centered hide-footer hide-header class="modal-window" body-class="p-0" rounded-0>
+    <b-modal v-bind:id="info.id" centered hide-footer hide-header class="modal-window" body-class="p-0">
       <div class="container-fluid">
         <div class="row">
           <div class="col">
