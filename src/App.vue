@@ -64,7 +64,7 @@ export default {
 body {
   display: flex;
   justify-content: center;
-  background: #fafdfd;
+  background: #f5f5f5;
   font-family: "Roboto Slab", serif;
   line-height: 1.4;
 }
