@@ -33,7 +33,7 @@
               </b-card-body>
               </div>
             </div>
-                <b-card-text class="mt-3">{{ info.desc}}</b-card-text>
+                <b-card-text class="mt-3 mb-3">{{ info.desc}}</b-card-text>
           </div>
         </div>
       </div>
