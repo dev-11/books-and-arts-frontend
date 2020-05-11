@@ -11,9 +11,33 @@
         </div>
       </div>
     </div>
-    <b-modal v-bind:id="info.id" centered hide-footer hide-header>
-      <div>
-        <b-card no-body class="border-0">
+    <b-modal v-bind:id="info.id" centered hide-footer hide-header class="modal-window">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col" style="background: #e9edde;">
+                <div>
+                  <img v-bind:src="info.img" alt="Image"/>
+                </div>
+              </div>
+              <div class="col" style="background: #f4f6ef;">
+              <b-card-body>
+                  <div class="font-weight-bold">{{info.title}}</div>
+                  <div class="font-italic">by {{ info.authors }}</div>
+                  <div class="mt-3"><b-icon-bag/> {{ info.price }}</div>
+                  <div><b-icon-book-half /> {{ info.format }}</div>
+                  <div><b-icon-book/> {{ info.number_of_pages }} pages</div>
+                  <div><b-icon-calendar/> {{ info.published_at }}</div>
+                  <div><b-icon-pencil-square/> {{ info.genres[info.genres.length - 1] }}</div>
+              </b-card-body>
+              </div>
+            </div>
+                <b-card-text class="mt-3">{{ info.desc}}</b-card-text>
+          </div>
+        </div>
+      </div>
+      <!-- <b-card no-body class="border-0">
           <b-row no-gutters>
             <b-col class="image-box">
               <img v-bind:src="info.img" alt="Image" class="rounded-0" />
@@ -32,8 +56,8 @@
               </b-card-body>
             </b-col>
           </b-row>
-        </b-card>
-      </div>
+      </b-card>-->
+      <!-- </div> -->
     </b-modal>
   </div>
 </template>
@@ -50,7 +74,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .image-box {
-  background: #eef1e6;
+  background: #e9edde;
   width: calc(100%);
   height: 0;
   padding-bottom: calc(100%);
@@ -84,4 +108,83 @@ export default {
   left: 0;
   right: 0;
 }
+
+.img-container {
+  text-align: center;
+  display: block;
+}
+
+.modal-window {
+  background: #eef1e6;
+  width: calc(100%);
+  height: 0;
+  padding-bottom: calc(100%);
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+  -ms-flex-pack: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.modal-window img {
+  width: 45%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  top: 50%;
+  position: absolute;
+  box-shadow: 7px 4px 11px -1px rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+}
+
+.item3 {
+  grid-area: main;
+}
+.item4 {
+  grid-area: right;
+}
+.item5 {
+  grid-area: footer;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "main right"
+    "footer footer";
+  grid-gap: 1px;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: #eef1e6;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
+div img {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
 </style>
