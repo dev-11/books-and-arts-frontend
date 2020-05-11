@@ -1,5 +1,5 @@
 <template>
-  <div class="card mt-3 mb-3 ml-3 mr-3 border-1 rounded-0" style="width: 200px;">
+  <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;">
     <div v-b-modal="info.id">
       <div class="image-box">
         <img v-bind:src="info.img" alt="asdf" />
