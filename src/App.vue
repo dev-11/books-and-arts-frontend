@@ -40,7 +40,7 @@ export default {
       .then(response => (this.services = response.data.body.data))
       // .then(response => this.services = response.data.body.data[2].data)
       // .then(response => (this.services = response.data.body.data[1].data))
-      .catch(error => { 
+      .catch(error => {
         console.log(error);
         this.errored = true;
       })

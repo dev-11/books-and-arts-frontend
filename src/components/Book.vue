@@ -11,29 +11,51 @@
         </div>
       </div>
     </div>
-    <b-modal v-bind:id="info.id" centered hide-footer hide-header class="modal-window" body-class="p-0">
+    <b-modal
+      v-bind:id="info.id"
+      centered
+      hide-footer
+      hide-header
+      class="modal-window"
+      body-class="p-0"
+    >
       <div class="container-fluid">
         <div class="row">
           <div class="col">
             <div class="row">
               <div class="col" style="background: #e9edde;">
                 <div>
-                  <img v-bind:src="info.img" alt="Image"/>
+                  <img v-bind:src="info.img" alt="Image" />
                 </div>
               </div>
               <div class="col" style="background: #f4f6ef;">
-              <b-card-body>
+                <b-card-body>
                   <div class="font-weight-bold">{{info.title}}</div>
                   <div class="font-italic">by {{ info.authors }}</div>
-                  <div class="mt-3"><b-icon-bag/> {{ info.price }}</div>
-                  <div><b-icon-book-half /> {{ info.format }}</div>
-                  <div><b-icon-book/> {{ info.number_of_pages }} pages</div>
-                  <div><b-icon-calendar/> {{ info.published_at }}</div>
-                  <div><b-icon-pencil-square/> {{ info.genres[info.genres.length - 1] }}</div>
-              </b-card-body>
+                  <div class="mt-3">
+                    <b-icon-bag />
+                    {{ info.price }}
+                  </div>
+                  <div>
+                    <b-icon-book-half />
+                    {{ info.format }}
+                  </div>
+                  <div>
+                    <b-icon-book />
+                    {{ info.number_of_pages }} pages
+                  </div>
+                  <div>
+                    <b-icon-calendar />
+                    {{ info.published_at }}
+                  </div>
+                  <div>
+                    <b-icon-pencil-square />
+                    {{ info.genres[info.genres.length - 1] }}
+                  </div>
+                </b-card-body>
               </div>
             </div>
-                <b-card-text class="mt-3 mb-3">{{ info.desc}}</b-card-text>
+            <b-card-text class="mt-3 mb-3">{{ info.desc}}</b-card-text>
           </div>
         </div>
       </div>
@@ -166,9 +188,9 @@ div img {
   margin: auto;
 }
 
-div:focus,div:active {
-   outline: none !important;
-   box-shadow: none;
+div:focus,
+div:active {
+  outline: none !important;
+  box-shadow: none;
 }
-
 </style>

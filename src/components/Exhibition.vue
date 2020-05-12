@@ -1,5 +1,5 @@
 <template>
-      <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;">
+  <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;">
     <div v-b-modal="info.id">
       <div class="image-box">
         <img v-bind:src="info.img" alt="asdf" />
@@ -11,27 +11,40 @@
         </div>
       </div>
     </div>
-    <b-modal v-bind:id="info.id" centered hide-footer hide-header class="modal-window" body-class="p-0">
+    <b-modal
+      v-bind:id="info.id"
+      centered
+      hide-footer
+      hide-header
+      class="modal-window"
+      body-class="p-0"
+    >
       <div class="container-fluid">
         <div class="row">
           <div class="col">
             <div class="row">
               <div class="col" style="background: #D3E1E9;">
                 <div>
-                  <img v-bind:src="info.img" alt="Image"/>
+                  <img v-bind:src="info.img" alt="Image" />
                 </div>
               </div>
               <div class="col" style="background: #e4edf2;">
-              <b-card-body>
+                <b-card-body>
                   <div class="font-weight-bold">{{info.title}}</div>
                   <div class="font-italic">by {{ info.authors }}</div>
-                  <div class="mt-3"><b-icon-eye/> {{ info.payment_type }}</div>
-                  <div><b-icon-calendar/> {{ info.date }}</div>
+                  <div class="mt-3">
+                    <b-icon-eye />
+                    {{ info.payment_type }}
+                  </div>
+                  <div>
+                    <b-icon-calendar />
+                    {{ info.date }}
+                  </div>
                   <!-- <div><b-icon-pencil-square/> {{ info.genres[info.genres.length - 1] }}</div> -->
-              </b-card-body>
+                </b-card-body>
               </div>
             </div>
-                <b-card-text class="mt-3 mb-3">{{info.description}}</b-card-text>
+            <b-card-text class="mt-3 mb-3">{{info.description}}</b-card-text>
           </div>
         </div>
       </div>
@@ -51,7 +64,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .image-box {
-  background: #D3E1E9;
+  background: #d3e1e9;
   width: calc(100%);
   height: 0;
   padding-bottom: calc(100%);
@@ -165,9 +178,9 @@ div img {
   margin: auto;
 }
 
-div:focus,div:active {
-   outline: none !important;
-   box-shadow: none;
+div:focus,
+div:active {
+  outline: none !important;
+  box-shadow: none;
 }
-
 </style>
