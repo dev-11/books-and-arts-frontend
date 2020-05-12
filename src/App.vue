@@ -10,27 +10,26 @@
         </div>
       </div>
       <div v-else>
-        <!-- <div v-bind:key="d.id" v-for="d in sections">
-          <Sections v-bind:sections="d.books" />
-        </div> -->
-          <Sections v-bind:sections="sections" />
+        <div v-bind:key="s.full_name" v-for="s in services">
+          <Services v-bind:service="s" />
+        </div>
       </div>
     </section>
   </div>
 </template>
 
 <script>
-import Sections from "./components/Sections.vue";
+import Services from "./components/Services.vue";
 import axios from "axios";
 
 export default {
   name: "App",
   components: {
-    Sections
+    Services
   },
   data() {
     return {
-      sections: [],
+      services: [],
       errored: false,
       loading: true
     };
@@ -38,8 +37,9 @@ export default {
   created() {
     axios
       .get("https://api.masterbranch.io/b/bna")
-      .then(response => (this.sections = response.data.body.data[0].data))
-      // .then(response => (this.sections = response.data.body.data[1].data))
+      .then(response => (this.services = response.data.body.data))
+      // .then(response => this.services = response.data.body.data[2].data)
+      // .then(response => (this.services = response.data.body.data[1].data))
       .catch(error => { 
         console.log(error);
         this.errored = true;
@@ -50,15 +50,6 @@ export default {
 </script>
 
 <style>
-/* #app {
-  margin-top: 20px;
-  width: 300px;
-  padding: 0 40px 40px; 
-  background: #2f242c;
-  border-radius: 5px;
-  color: #b3bfb8;
-}
-*/
 body {
   display: flex;
   justify-content: center;

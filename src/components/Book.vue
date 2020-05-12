@@ -37,34 +37,13 @@
           </div>
         </div>
       </div>
-      <!-- <b-card no-body class="border-0">
-          <b-row no-gutters>
-            <b-col class="image-box">
-              <img v-bind:src="info.img" alt="Image" class="rounded-0" />
-            </b-col>
-            <b-col >
-              <b-card-body v-bind:title="info.title">
-                <b-card-text class="font-italic">by {{ info.authors }}</b-card-text>
-                <b-card-text>
-                  <b-icon-bag/> {{ info.price }} | 
-                  <b-icon-book-half /> {{ info.format }}<br/>
-                  <b-icon-book/> {{ info.number_of_pages }} pages |
-                  <b-icon-calendar/> {{ info.published_at }} <br/>
-                  <b-icon-pencil-square/> {{ info.genres[info.genres.length - 1] }}
-                </b-card-text>
-                <b-card-text>{{ info.desc}}</b-card-text>
-              </b-card-body>
-            </b-col>
-          </b-row>
-      </b-card>-->
-      <!-- </div> -->
     </b-modal>
   </div>
 </template>
 
 <script>
 export default {
-  name: "SectionItem",
+  name: "Book",
   props: {
     info: Object
   }
