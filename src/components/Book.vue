@@ -28,7 +28,7 @@
                   <img v-bind:src="info.img" alt="Image" />
                 </div>
               </div>
-              <div class="col" style="background: #f4f6ef;">
+              <div class="col" scrollable style="background: #f4f6ef;">
                 <b-card-body>
                   <div class="font-weight-bold">{{info.title}}</div>
                   <div class="font-italic">by {{ info.authors }}</div>
