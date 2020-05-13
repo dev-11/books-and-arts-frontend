@@ -55,7 +55,11 @@
                 </b-card-body>
               </div>
             </div>
-            <b-card-text class="mt-3 mb-3" v-if="info.desc !== undefined" style="white-space: pre-wrap; word-wrap: break-word;">{{info.desc}}</b-card-text>
+            <b-card-text class="mt-3 mb-3" v-if="info.desc !== undefined">
+                <p v-bind:key="line" v-for="line in info.desc.split('\n')">
+                  {{line}}
+                </p>
+              </b-card-text>
           </div>
         </div>
       </div>
