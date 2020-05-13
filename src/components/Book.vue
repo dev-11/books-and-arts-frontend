@@ -201,6 +201,7 @@ div:active {
 }
 
 .scroll {
+    max-height:400px;
     overflow-y: auto;
 }
 </style>
