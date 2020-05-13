@@ -40,11 +40,11 @@
                     <b-icon-book-half />
                     {{ info.format }}
                   </div>
-                  <div>
+                  <div v-if="info.number_of_pages !=='N/A'">
                     <b-icon-book />
                     {{ info.number_of_pages }} pages
                   </div>
-                  <div>
+                  <div v-if="info.published_ad !=='N/A'">
                     <b-icon-calendar />
                     {{ info.published_at }}
                   </div>
