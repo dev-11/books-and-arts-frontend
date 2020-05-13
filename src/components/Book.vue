@@ -55,7 +55,7 @@
                 </b-card-body>
               </div>
             </div>
-            <b-card-text class="mt-3 mb-3 overflow-auto" v-if="info.desc !== undefined">
+            <b-card-text class="mt-3 mb-3 scroll" v-if="info.desc !== undefined">
                 <p v-bind:key="line" v-for="line in info.desc.split('\n')">
                   {{line}}
                 </p>
@@ -198,5 +198,10 @@ div:focus,
 div:active {
   outline: none !important;
   box-shadow: none;
+}
+
+.scroll {
+    max-height: 100px;
+    overflow-y: auto;
 }
 </style>
