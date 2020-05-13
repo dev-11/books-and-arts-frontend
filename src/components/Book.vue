@@ -55,7 +55,7 @@
                 </b-card-body>
               </div>
             </div>
-            <b-card-text class="mt-3 mb-3">{{ info.desc}}</b-card-text>
+            <b-card-text class="mt-3 mb-3" v-if="info.desc !== undefined">{{info.desc}}</b-card-text>
           </div>
         </div>
       </div>
@@ -150,6 +150,8 @@ export default {
   margin: 0 auto;
   left: 0;
   right: 0;
+  background: url('https://masterbranch.io/logo.png') center center no-repeat transparent;
+  background-size: cover; /* for new browsers */
 }
 
 .item3 {
