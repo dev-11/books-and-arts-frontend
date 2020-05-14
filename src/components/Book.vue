@@ -28,7 +28,7 @@
                   <img v-bind:src="info.img" alt="Image" />
                 </div>
               </div>
-              <div class="col" style="background: #f4f6ef;">
+              <div class="col" scrollable style="background: #f4f6ef;">
                 <b-card-body>
                   <div class="font-weight-bold">{{info.title}}</div>
                   <div class="font-italic">by {{ info.authors }}</div>
@@ -55,7 +55,7 @@
                 </b-card-body>
               </div>
             </div>
-            <b-card-text class="mt-3 mb-3" v-if="info.desc !== undefined">
+            <b-card-text class="mt-3 mb-3 scroll" v-if="info.desc !== undefined">
                 <p v-bind:key="line" v-for="line in info.desc.split('\n')">
                   {{line}}
                 </p>
@@ -198,5 +198,10 @@ div:focus,
 div:active {
   outline: none !important;
   box-shadow: none;
+}
+
+.scroll {
+    max-height:400px;
+    overflow-y: auto;
 }
 </style>
