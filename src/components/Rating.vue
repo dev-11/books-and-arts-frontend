@@ -12,9 +12,9 @@
         <div class="ml-2" style="float: left;">
             {{rating}}
         </div>
-        <!-- <div class="ml-2" style="float: left;">
-            {{ratings_count}} ratings
-        </div> -->
+        <div class="ml-2 text-muted" style="float: left;">
+            ({{ratings_count.toLocaleString()}})
+        </div>
     </div>
 </template>
 
