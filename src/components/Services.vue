@@ -3,7 +3,7 @@
     <div class="card-deck justify-content-center" v-if="service.service_type === 'books'">
       <div v-bind:key="section.section" v-for="section in service.data">
         <div v-bind:key="book.id" v-for="book in section.books">
-          <Book v-bind:info="book" />
+          <Book v-bind:info="book" v-bind:section="section.section"/>
         </div>
       </div>
     </div>

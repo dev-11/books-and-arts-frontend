@@ -4,6 +4,9 @@
       <div class="image-box">
         <img v-bind:src="info.img" alt="asdf" />
       </div>
+      <!-- <div class="container" style="background: #eef1e6;">
+        {{section}}
+      </div> -->
       <div>
         <div class="card-body">
           <div class="card-text text-truncate">{{ info.title }}</div>
@@ -56,22 +59,30 @@
                     <rating v-bind:rating="info.rating.average_rating"
                             v-bind:ratings_count="info.rating.work_ratings_count"
                             style="float: left;"
+                            id="tooltip-target"
                             />
                   </div>
                   <div class="mb-3" v-else style="float: left;">
                     <rating v-bind:rating="'0.00'"
                             v-bind:ratings_count="0"
                             style="float: left;"
+                            id="tooltip-target"
                             />
                   </div>
+                    <b-tooltip target="tooltip-target" triggers="hover" placement="left">
+                      Goodreads rating, <br/>refreshed daily.
+                    </b-tooltip>
                 </b-card-body>
               </div>
             </div>
+            <!-- <div style="background: #eef1e6;">
+              {{section}}
+            </div> -->
             <b-card-text class="mt-3 mb-3 scroll" v-if="info.desc !== undefined">
                 <p v-bind:key="line" v-for="line in info.desc.split('\n')">
                   {{line}}
                 </p>
-              </b-card-text>
+            </b-card-text>
           </div>
         </div>
       </div>
@@ -88,7 +99,8 @@ export default {
     Rating
   },
   props: {
-    info: Object
+    info: Object,
+    section: String
   }
 };
 </script>
