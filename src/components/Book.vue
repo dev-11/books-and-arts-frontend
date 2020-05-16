@@ -52,6 +52,18 @@
                     <b-icon-pencil-square />
                     {{ info.genres[info.genres.length - 1] }}
                   </div>
+                  <div class="mb-3" v-if="Object.keys(info.rating).length !== 0" style="float: left;">
+                    <rating v-bind:rating="info.rating.average_rating"
+                            v-bind:ratings_count="info.rating.work_ratings_count"
+                            style="float: left;"
+                            />
+                  </div>
+                  <div class="mb-3" v-else style="float: left;">
+                    <rating v-bind:rating="'0.00'"
+                            v-bind:ratings_count="0"
+                            style="float: left;"
+                            />
+                  </div>
                 </b-card-body>
               </div>
             </div>
@@ -68,8 +80,13 @@
 </template>
 
 <script>
+import Rating from "./Rating.vue";
+
 export default {
   name: "Book",
+  components:{
+    Rating
+  },
   props: {
     info: Object
   }
@@ -203,5 +220,9 @@ div:active {
 .scroll {
     max-height:400px;
     overflow-y: auto;
+}
+
+.checked {
+  color: orange;
 }
 </style>
