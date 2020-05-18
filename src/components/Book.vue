@@ -113,7 +113,7 @@ export default {
     get_random_genre() {
         var new_index = Math.floor(Math.random() * this.info.genres.length);
         if(this.info.genres.length>1){
-            while(new_index != this.prev_index){
+            while(new_index == this.prev_index){
                 new_index = Math.floor(Math.random() * this.info.genres.length);
             }
         }
