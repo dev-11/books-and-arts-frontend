@@ -21,6 +21,7 @@
       hide-header
       class="modal-window"
       body-class="p-0"
+      @show="get_random_genre"
     >
       <div class="container-fluid">
         <div class="row">
@@ -53,7 +54,7 @@
                   </div>
                   <div>
                     <b-icon-pencil-square />
-                    {{ info.genres[info.genres.length - 1] }}
+                    {{ random_genre }}
                   </div>
                   <div class="mb-3" v-if="Object.keys(info.rating).length !== 0" style="float: left;">
                     <rating v-bind:rating="info.rating.average_rating"
@@ -98,9 +99,19 @@ export default {
   components:{
     Rating
   },
+  data() {
+    return {
+      random_genre: null
+    }
+  },
   props: {
     info: Object,
     section: String
+  },
+  methods:{
+    get_random_genre() {
+        this.random_genre = this.info.genres[Math.floor(Math.random() * this.info.genres.length)];
+    }
   }
 };
 </script>
