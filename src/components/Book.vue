@@ -27,7 +27,7 @@
         <div class="row">
           <div class="col">
             <div class="row">
-              <div class="col" style="background: #e9edde;">
+              <div @click="get_random_genre" class="col" style="background: #e9edde;">
                 <div>
                   <img v-bind:src="info.img" alt="Image" />
                 </div>
@@ -52,7 +52,7 @@
                     <b-icon-calendar />
                     {{ info.published_at }}
                   </div>
-                  <div @click="get_random_genre">
+                  <div>
                     <b-icon-pencil-square />
                     {{ random_genre }}
                   </div>
