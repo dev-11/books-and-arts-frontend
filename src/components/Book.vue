@@ -52,7 +52,7 @@
                     <b-icon-calendar />
                     {{ info.published_at }}
                   </div>
-                  <div>
+                  <div @click="get_random_genre">
                     <b-icon-pencil-square />
                     {{ random_genre }}
                   </div>
