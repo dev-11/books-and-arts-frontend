@@ -102,7 +102,7 @@ export default {
   data() {
     return {
       random_genre: null,
-      current_genre_index: 0
+      prev_index: 0
     }
   },
   props: {
@@ -111,7 +111,7 @@ export default {
   },
   methods:{
     get_random_genre() {
-        new_index = Math.floor(Math.random() * this.info.genres.length);
+        var new_index = Math.floor(Math.random() * this.info.genres.length);
         if(this.info.genres.length>1){
             while(new_index != prev_index){
                 new_index = Math.floor(Math.random() * this.info.genres.length);
