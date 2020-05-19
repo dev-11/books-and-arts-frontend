@@ -55,7 +55,7 @@
                   </div>
                   <div v-if="info.published_ad !==''">
                     <b-icon-calendar style="float: left;" class="mr-1" />
-                    <div v-if="format_switch">{{ this.formatted_publication_date }}</div>
+                    <div v-if="show_smart_publication_date">{{ this.formatted_publication_date }}</div>
                     <div v-else>{{ info.published_at }}</div>
                   </div>
                   <div>
@@ -114,7 +114,7 @@ export default {
     return {
       random_genre: null,
       prev_index: 0,
-      format_switch: false
+      show_smart_publication_date: true
     };
   },
   computed: {
@@ -125,18 +125,7 @@ export default {
       let diff = now.getTime() - date.getTime();
       let diff_in_days = Math.floor(diff / (1000 * 3600 * 24));
 
-      let abs_days = Math.abs(diff_in_days);
-      let day = "days";
-      if (abs_days == 1) {
-        day = "day";
-      }
-
-      if (diff_in_days === 0) {
-        return "Publised today";
-      } else if (diff_in_days > 0) {
-        return "Publised " + diff_in_days + " " + day + " ago";
-      }
-      return "Publised " + abs_days + " " + day + " from now";
+      return this.get_smart_date_display(diff_in_days);
     }
   },
   props: {
@@ -155,7 +144,36 @@ export default {
       this.random_genre = this.info.genres[new_index];
     },
     switch_publication_date_format() {
-      this.format_switch = !this.format_switch;
+      this.show_smart_publication_date = !this.show_smart_publication_date;
+    },
+    get_smart_date_display(days){
+      if(days == 0){
+        return "today"
+      }
+
+      if(days == 1){
+        return 'yesterday'
+      }
+
+      if(days == 2){
+        return 'the day before yesterday'
+      }
+
+      if(days == -1){
+        return 'tomorrow'
+      }
+
+      if(days == -2){
+        return 'the day after tomorrow'
+      }
+
+      let abs_days = Math.abs(days);
+      let day = (abs_days == 1) ? "day" : "days";
+      
+      if (days > 0) {
+        return abs_days + " " + day + " ago";
+      }
+      return abs_days + " " + day + " from now";
     }
   }
 };
