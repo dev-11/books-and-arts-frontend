@@ -53,7 +53,7 @@
                     <b-icon-book />
                     {{ info.number_of_pages }} pages
                   </div>
-                  <div v-if="info.published_ad !==''">
+                  <div v-if="info.published_ad !==''" class="text-capitalize">
                     <b-icon-calendar style="float: left;" class="mr-1" />
                     <div v-if="show_smart_publication_date">{{ this.formatted_publication_date }}</div>
                     <div v-else>{{ info.published_at }}</div>
