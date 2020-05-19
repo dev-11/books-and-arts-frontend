@@ -6,7 +6,7 @@
       </div>
       <!-- <div class="container" style="background: #eef1e6;">
         {{section}}
-      </div> -->
+      </div>-->
       <div>
         <div class="card-body">
           <div class="card-text text-truncate">{{ info.title }}</div>
@@ -32,7 +32,12 @@
                   <img v-bind:src="info.img" alt="Image" />
                 </div>
               </div>
-              <div class="col" scrollable style="background: #f4f6ef;">
+              <div
+                @click="switch_publication_date_format"
+                class="col"
+                scrollable
+                style="background: #f4f6ef;"
+              >
                 <b-card-body>
                   <div class="font-weight-bold">{{info.title}}</div>
                   <div class="font-italic">by {{ info.authors }}</div>
@@ -49,40 +54,46 @@
                     {{ info.number_of_pages }} pages
                   </div>
                   <div v-if="info.published_ad !==''">
-                    <b-icon-calendar />
-                    {{ info.published_at }}
+                    <b-icon-calendar style="float: left;" class="mr-1" />
+                    <div v-if="format_switch">{{ this.formatted_publication_date }}</div>
+                    <div v-else>{{ info.published_at }}</div>
                   </div>
                   <div>
                     <b-icon-pencil-square />
                     {{ random_genre }}
                   </div>
-                  <div class="mb-3" v-if="Object.keys(info.rating).length !== 0" style="float: left;">
-                    <rating v-bind:rating="info.rating.average_rating"
-                            v-bind:ratings_count="info.rating.work_ratings_count"
-                            style="float: left;"
-                            id="tooltip-target"
-                            />
+                  <div
+                    class="mb-3"
+                    v-if="Object.keys(info.rating).length !== 0"
+                    style="float: left;"
+                  >
+                    <rating
+                      v-bind:rating="info.rating.average_rating"
+                      v-bind:ratings_count="info.rating.work_ratings_count"
+                      style="float: left;"
+                      id="tooltip-target"
+                    />
                   </div>
                   <div class="mb-3" v-else style="float: left;">
-                    <rating v-bind:rating="'0.00'"
-                            v-bind:ratings_count="0"
-                            style="float: left;"
-                            id="tooltip-target"
-                            />
+                    <rating
+                      v-bind:rating="'0.00'"
+                      v-bind:ratings_count="0"
+                      style="float: left;"
+                      id="tooltip-target"
+                    />
                   </div>
-                    <b-tooltip target="tooltip-target" triggers="hover" placement="left">
-                      Goodreads rating, <br/>refreshed daily.
-                    </b-tooltip>
+                  <b-tooltip target="tooltip-target" triggers="hover" placement="left">
+                    Goodreads rating,
+                    <br />refreshed daily.
+                  </b-tooltip>
                 </b-card-body>
               </div>
             </div>
             <!-- <div style="background: #eef1e6;">
               {{section}}
-            </div> -->
+            </div>-->
             <b-card-text class="mt-3 mb-3 scroll" v-if="info.desc !== undefined">
-                <p v-bind:key="line" v-for="line in info.desc.split('\n')">
-                  {{line}}
-                </p>
+              <p v-bind:key="line" v-for="line in info.desc.split('\n')">{{line}}</p>
             </b-card-text>
           </div>
         </div>
@@ -96,29 +107,55 @@ import Rating from "./Rating.vue";
 
 export default {
   name: "Book",
-  components:{
+  components: {
     Rating
   },
   data() {
     return {
       random_genre: null,
-      prev_index: 0
+      prev_index: 0,
+      format_switch: false
+    };
+  },
+  computed: {
+    formatted_publication_date: function() {
+      let d = this.info.published_at.split("/");
+      let date = new Date(+d[2], +d[1] - 1, +d[0]);
+      let now = new Date();
+      let diff = now.getTime() - date.getTime();
+      let diff_in_days = Math.floor(diff / (1000 * 3600 * 24));
+
+      let abs_days = Math.abs(diff_in_days);
+      let day = "days";
+      if (abs_days == 1) {
+        day = "day";
+      }
+
+      if (diff_in_days === 0) {
+        return "Publised today";
+      } else if (diff_in_days > 0) {
+        return "Publised " + diff_in_days + " " + day + " ago";
+      }
+      return "Publised " + abs_days + " " + day + " from now";
     }
   },
   props: {
     info: Object,
     section: String
   },
-  methods:{
+  methods: {
     get_random_genre() {
-        var new_index = Math.floor(Math.random() * this.info.genres.length);
-        if(this.info.genres.length>1){
-            while(new_index == this.prev_index){
-                new_index = Math.floor(Math.random() * this.info.genres.length);
-            }
+      var new_index = Math.floor(Math.random() * this.info.genres.length);
+      if (this.info.genres.length > 1) {
+        while (new_index == this.prev_index) {
+          new_index = Math.floor(Math.random() * this.info.genres.length);
         }
-        this.prev_index = new_index;
-        this.random_genre = this.info.genres[new_index];
+      }
+      this.prev_index = new_index;
+      this.random_genre = this.info.genres[new_index];
+    },
+    switch_publication_date_format() {
+      this.format_switch = !this.format_switch;
     }
   }
 };
@@ -202,7 +239,8 @@ export default {
   margin: 0 auto;
   left: 0;
   right: 0;
-  background: url('https://masterbranch.io/logo.png') center center no-repeat transparent;
+  background: url("https://masterbranch.io/logo.png") center center no-repeat
+    transparent;
   background-size: cover; /* for new browsers */
 }
 
@@ -249,8 +287,8 @@ div:active {
 }
 
 .scroll {
-    max-height:400px;
-    overflow-y: auto;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .checked {
