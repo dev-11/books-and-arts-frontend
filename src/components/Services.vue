@@ -1,10 +1,8 @@
 <template>
   <div>
-    <div class="card-deck justify-content-center" v-if="service.service_type === 'books'">
-      <div v-bind:key="section.section" v-for="section in service.data">
-        <div v-bind:key="book.id" v-for="book in section.books">
-          <Book v-bind:info="book" v-bind:section="section.section"/>
-        </div>
+    <div class="justify-content-center d-flex flex-wrap" v-if="service.service_type === 'books'">
+      <div v-bind:key="i" v-for="(book, i) in books">
+        <Book v-bind:info="book"/>
       </div>
     </div>
     <div v-else class="card-deck justify-content-center">
@@ -25,6 +23,24 @@ export default {
     Book,
     Exhibition
   },
-  props: ["service"]
+  props: {
+    service: Object
+  },
+  computed:{
+    books: function(){
+      let result = []
+      this.service.data.forEach(section => {
+        if(this.service.service_type === 'books'){
+          section.books.forEach(book => {
+            result.push({
+              'book': book,
+              'section': section.section
+            });
+          })
+        }
+      });
+      return result;
+    }
+  }
 };
 </script>

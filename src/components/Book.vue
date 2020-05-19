@@ -1,21 +1,21 @@
 <template>
   <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;">
-    <div v-b-modal="info.id">
+    <div v-b-modal="book.id">
       <div class="image-box">
-        <img v-bind:src="info.img" alt="asdf" />
+        <img v-bind:src="book.img" alt="asdf" />
       </div>
       <!-- <div class="container" style="background: #eef1e6;">
         {{section}}
       </div>-->
       <div>
         <div class="card-body">
-          <div class="card-text text-truncate">{{ info.title }}</div>
-          <div class="card-text text-truncate font-italic">{{ info.authors }}</div>
+          <div class="card-text text-truncate">{{ book.title }}</div>
+          <div class="card-text text-truncate font-italic">{{ book.authors }}</div>
         </div>
       </div>
     </div>
     <b-modal
-      v-bind:id="info.id"
+      v-bind:id="book.id"
       centered
       hide-footer
       hide-header
@@ -29,7 +29,7 @@
             <div class="row">
               <div @click="get_random_genre" class="col" style="background: #e9edde;">
                 <div>
-                  <img v-bind:src="info.img" alt="Image" />
+                  <img v-bind:src="book.img" alt="Image" />
                 </div>
               </div>
               <div
@@ -39,24 +39,24 @@
                 style="background: #f4f6ef;"
               >
                 <b-card-body>
-                  <div class="font-weight-bold">{{info.title}}</div>
-                  <div class="font-italic">by {{ info.authors }}</div>
+                  <div class="font-weight-bold">{{book.title}}</div>
+                  <div class="font-italic">by {{ book.authors }}</div>
                   <div class="mt-3">
                     <b-icon-bag />
-                    {{ info.price }}
+                    {{ book.price }}
                   </div>
                   <div>
                     <b-icon-book-half />
-                    {{ info.format }}
+                    {{ book.format }}
                   </div>
-                  <div v-if="info.number_of_pages !==''">
+                  <div v-if="book.number_of_pages !==''">
                     <b-icon-book />
-                    {{ info.number_of_pages }} pages
+                    {{ book.number_of_pages }} pages
                   </div>
-                  <div v-if="info.published_ad !==''" class="text-capitalize">
+                  <div v-if="book.published_ad !==''" class="text-capitalize">
                     <b-icon-calendar style="float: left;" class="mr-1" />
                     <div v-if="show_smart_publication_date">{{ this.formatted_publication_date }}</div>
-                    <div v-else>{{ info.published_at }}</div>
+                    <div v-else>{{ book.published_at }}</div>
                   </div>
                   <div>
                     <b-icon-pencil-square />
@@ -64,12 +64,12 @@
                   </div>
                   <div
                     class="mb-3"
-                    v-if="Object.keys(info.rating).length !== 0"
+                    v-if="Object.keys(book.rating).length !== 0"
                     style="float: left;"
                   >
                     <rating
-                      v-bind:rating="info.rating.average_rating"
-                      v-bind:ratings_count="info.rating.work_ratings_count"
+                      v-bind:rating="book.rating.average_rating"
+                      v-bind:ratings_count="book.rating.work_ratings_count"
                       style="float: left;"
                       id="tooltip-target"
                     />
@@ -92,8 +92,8 @@
             <!-- <div style="background: #eef1e6;">
               {{section}}
             </div>-->
-            <b-card-text class="mt-3 mb-3 scroll" v-if="info.desc !== undefined">
-              <p v-bind:key="line" v-for="line in info.desc.split('\n')">{{line}}</p>
+            <b-card-text class="mt-3 mb-3 scroll" v-if="book.desc !== undefined">
+              <p v-bind:key="line" v-for="line in book.desc.split('\n')">{{line}}</p>
             </b-card-text>
           </div>
         </div>
@@ -114,12 +114,13 @@ export default {
     return {
       random_genre: null,
       prev_index: 0,
-      show_smart_publication_date: true
+      show_smart_publication_date: true,
+      book: this.info.book
     };
   },
   computed: {
     formatted_publication_date: function() {
-      let d = this.info.published_at.split("/");
+      let d = this.book.published_at.split("/");
       let date = new Date(+d[2], +d[1] - 1, +d[0]);
       let now = new Date();
       let diff = now.getTime() - date.getTime();
@@ -129,19 +130,18 @@ export default {
     }
   },
   props: {
-    info: Object,
-    section: String
+    info: Object
   },
   methods: {
     get_random_genre() {
-      var new_index = Math.floor(Math.random() * this.info.genres.length);
-      if (this.info.genres.length > 1) {
+      var new_index = Math.floor(Math.random() * this.book.genres.length);
+      if (this.book.genres.length > 1) {
         while (new_index == this.prev_index) {
-          new_index = Math.floor(Math.random() * this.info.genres.length);
+          new_index = Math.floor(Math.random() * this.book.genres.length);
         }
       }
       this.prev_index = new_index;
-      this.random_genre = this.info.genres[new_index];
+      this.random_genre = this.book.genres[new_index];
     },
     switch_publication_date_format() {
       this.show_smart_publication_date = !this.show_smart_publication_date;
