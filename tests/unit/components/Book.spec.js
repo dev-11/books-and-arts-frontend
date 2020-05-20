@@ -70,82 +70,82 @@ describe("Book.vue", () => {
     });
 
     it("get_random_genre gets random genre for two genres", () =>{
-        expect(wrapper.vm.random_genre).toBeNull()
-        expect(wrapper.vm.prev_index).toBe(0)
-        wrapper.vm.get_random_genre()
-        expect(wrapper.vm.random_genre).not.toBeNull()
-        expect(wrapper.vm.prev_index).toBe(1)
+        expect(wrapper.vm.random_genre).toBeNull();
+        expect(wrapper.vm.prev_index).toBe(0);
+        wrapper.vm.get_random_genre();
+        expect(wrapper.vm.random_genre).not.toBeNull();
+        expect(wrapper.vm.prev_index).toBe(1);
     }); 
 });
 
 
 describe("Book.vue", () => {
 
-    Date.now = jest.fn(() => new Date('05-01-2020'))
+    Date.now = jest.fn(() => new Date('05-01-2020'));
     const wrapper = shallowMount(Book, options);
 
     it("formatted_publication_date is today", () => {
         expect(wrapper.vm.formatted_publication_date).toBe("today");
     });
-})
+});
 
 describe("Book.vue", () => {
     
-    Date.now = jest.fn(() => new Date('05-02-2020'))
+    Date.now = jest.fn(() => new Date('05-02-2020'));
     const wrapper = shallowMount(Book, options);
 
     it("formatted_publication_date is yesterday", () => {
 
         expect(wrapper.vm.formatted_publication_date).toBe("yesterday");
     });
-})
+});
 
 describe("Book.vue", () => {
 
-    Date.now = jest.fn(() => new Date('04-30-2020'))
+    Date.now = jest.fn(() => new Date('04-30-2020'));
     const wrapper = shallowMount(Book, options);
 
     it("formatted_publication_date is tomorrow", () => {
         expect(wrapper.vm.formatted_publication_date).toBe("tomorrow");
     });
-})
+});
 
 describe("Book.vue", () => {
 
-    Date.now = jest.fn(() => new Date('05-03-2020'))
+    Date.now = jest.fn(() => new Date('05-03-2020'));
     const wrapper = shallowMount(Book, options);
 
     it("formatted_publication_date is the day before yesterday", () => {
         expect(wrapper.vm.formatted_publication_date).toBe("the day before yesterday");
     });
-})
+});
 
 describe("Book.vue", () => {
 
-    Date.now = jest.fn(() => new Date('04-29-2020'))
+    Date.now = jest.fn(() => new Date('04-29-2020'));
     const wrapper = shallowMount(Book, options);
 
     it("formatted_publication_date is the day after tomorrow", () => {
         expect(wrapper.vm.formatted_publication_date).toBe("the day after tomorrow");
     });
-})
+});
 
 describe("Book.vue", () => {
 
-    Date.now = jest.fn(() => new Date('05-11-2020'))
+    Date.now = jest.fn(() => new Date('05-11-2020'));
     const wrapper = shallowMount(Book, options);
 
     it("formatted_publication_date is 10 day ago", () => {
         expect(wrapper.vm.formatted_publication_date).toBe("10 days ago");
     });
-})
+});
 
 describe("Book.vue", () => {
 
-    Date.now = jest.fn(() => new Date('04-20-2020'))
+    Date.now = jest.fn(() => new Date('04-20-2020'));
     const wrapper = shallowMount(Book, options);
 
     it("formatted_publication_date is 11 days from now", () => {
         expect(wrapper.vm.formatted_publication_date).toBe("11 days from now");
     });
-})
+});
