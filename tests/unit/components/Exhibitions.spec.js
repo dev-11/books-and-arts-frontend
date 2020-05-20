@@ -17,7 +17,7 @@ describe("Exhibition.vue", () => {
             }
         }
       },
-      stubs: ['b-modal', 'b-card-text', 'b-icon-calendar', 'b-icon-eye', 'b-card-body']
+      stubs: ["b-modal", "b-card-text", "b-icon-calendar", "b-icon-eye", "b-card-body"]
     });
   
     it("tests for rating 1.0", () => {
