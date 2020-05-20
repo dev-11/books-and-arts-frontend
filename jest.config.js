@@ -27,4 +27,4 @@ module.exports = {
   ],
   // coverageReporters: ["lcov", "text-summary"],
   testURL: "http://localhost/"
-}
+};
