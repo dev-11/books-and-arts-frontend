@@ -3,18 +3,13 @@ language: node_js
 node_js:
  - "node"
 
-cache: npm
-
-install:
-  - npm install -g codecov
+cache:
+  directories:
+    - node_modules
 
 script:
   - npm run build
   - npm run test:unit
-
-after_success:
-  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
-  - codecov
 
 deploy:
   provider: s3
