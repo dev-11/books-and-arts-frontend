@@ -5,8 +5,16 @@ node_js:
 
 cache: npm
 
+install:
+  - npm install -g codecov
+
 script:
   - npm run build
+  - npm run test:unit
+
+after_success:
+  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+  - codecov
 
 deploy:
   provider: s3
