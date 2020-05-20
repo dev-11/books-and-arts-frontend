@@ -122,7 +122,7 @@ export default {
     formatted_publication_date: function() {
       let d = this.book.published_at.split("/");
       let date = new Date(+d[2], +d[1] - 1, +d[0]);
-      let now = new Date();
+      let now = new Date(Date.now()); // to make it testable
       let diff = now.getTime() - date.getTime();
       let diff_in_days = Math.floor(diff / (1000 * 3600 * 24));
 
