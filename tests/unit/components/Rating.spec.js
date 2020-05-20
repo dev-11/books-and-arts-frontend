@@ -85,7 +85,7 @@ describe("Rating.vue", () => {
       ratings_count: 1
     },
     stubs: ["b-icon-star-fill", "b-icon-star-half", "b-icon-star"]
-  })
+  });
 
   it("tests for rating 5.0", () => {
     expect(wrapper.isVueInstance()).toBeTruthy();
