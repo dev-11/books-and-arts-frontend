@@ -37,7 +37,7 @@ describe("Rating.vue", () => {
     expect(wrapper.vm.has_half_star).toBeGreaterThan(0);
     expect(wrapper.vm.empty_stars).toBe(2);
   });
-})
+});
 
 // tests for rating 3
 describe("Rating.vue", () => {
@@ -56,7 +56,7 @@ describe("Rating.vue", () => {
     expect(wrapper.vm.has_half_star).toBe(0);
     expect(wrapper.vm.empty_stars).toBe(2);
   });
-})
+});
 
 // tests for rating 0
 describe("Rating.vue", () => {
@@ -75,7 +75,7 @@ describe("Rating.vue", () => {
     expect(wrapper.vm.has_half_star).toBe(0);
     expect(wrapper.vm.empty_stars).toBe(5);
   });
-})
+});
 
 // tests for rating 5.0
 describe("Rating.vue", () => {
@@ -94,4 +94,4 @@ describe("Rating.vue", () => {
     expect(wrapper.vm.has_half_star).toBe(0);
     expect(wrapper.vm.empty_stars).toBe(0);
   });
-})
+});
