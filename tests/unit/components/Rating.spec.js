@@ -18,7 +18,7 @@ describe("Rating.vue", () => {
     expect(wrapper.vm.has_half_star).toBe(0);
     expect(wrapper.vm.empty_stars).toBe(4);
   });
-})
+});
 
 // tests for rating 2.44
 describe("Rating.vue", () => {
