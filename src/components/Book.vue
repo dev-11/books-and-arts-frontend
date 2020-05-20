@@ -296,6 +296,7 @@ div img {
   top: 0;
   bottom: 0;
   margin: auto;
+  box-shadow: 7px 4px 11px -1px rgba(0, 0, 0, 0.3);
 }
 
 div:focus,

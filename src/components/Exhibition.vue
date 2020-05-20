@@ -132,17 +132,15 @@ export default {
   cursor: pointer;
 }
 
-.modal-window img {
-  width: 20%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  top: 50%;
+div img {
   position: absolute;
-  box-shadow: 7px 4px 11px -1px rgba(0, 0, 0, 0.3);
-  margin: 0 auto;
+  z-index: 1;
   left: 0;
   right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  box-shadow: 7px 4px 11px -1px rgba(0, 0, 0, 0.3);
 }
 
 .item3 {
