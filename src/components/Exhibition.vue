@@ -1,6 +1,6 @@
 <template>
   <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;">
-    <div v-b-modal="exhibition.id">
+    <div v-b-modal="info.id">
       <div class="image-box">
         <img v-bind:src="exhibition.img" alt="asdf" />
       </div>
@@ -12,7 +12,7 @@
       </div>
     </div>
     <b-modal
-      v-bind:id="exhibition.id"
+      v-bind:id="info.id"
       centered
       hide-footer
       hide-header

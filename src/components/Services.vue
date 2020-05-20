@@ -40,7 +40,8 @@ export default {
               result.push({
                 book: book,
                 section: section.section,
-                type: service.service_type
+                type: service.service_type,
+                id: book.id+service.full_name+section.section.replace(/ /g, "_")
               });
             });
           });
@@ -56,7 +57,8 @@ export default {
               result.push({
                 exhibition: exhibition,
                 section: service.data.section,
-                type: service.service_type
+                type: service.service_type,
+                id: exhibition.id+service.full_name
               });
             });
         }
