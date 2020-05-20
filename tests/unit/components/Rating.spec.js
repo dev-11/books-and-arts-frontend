@@ -1,6 +1,7 @@
 import { shallowMount } from '@vue/test-utils'
 import Rating from '@/components/Rating.vue'
 
+// tests for rating 1.0
 describe('Rating.vue', () => {
   const wrapper = shallowMount(Rating, {
     propsData: {
@@ -10,31 +11,87 @@ describe('Rating.vue', () => {
     stubs: ['b-icon-star-fill', 'b-icon-star-half', 'b-icon-star']
   })
 
-  it('Register is a component', () => {
+  it('tests for rating 1.0', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
-  })
-
-  it('rating count is set', () => {
     expect(wrapper.vm.ratings_count).toBe(1)
-  })
-
-  it('full_stars is one', () => {
     expect(wrapper.vm.full_stars).toBe(1)
-  })
-
-  it('has_half_stars is false', () => {
     expect(wrapper.vm.has_half_star).toBe(0)
-  })
-
-  it('empty_stars is zero', () => {
     expect(wrapper.vm.empty_stars).toBe(4)
   })
+})
 
-//   // checks the counter increment on clicking the button
-//   it('counter incremented or not', () => {
-//     expect(wrapper.vm.count).toBe(0)
-//     const button = wrapper.find('button')
-//     button.trigger('click')
-//     expect(wrapper.vm.count).toBe(1)
-//   })
+// tests for rating 2.44
+describe('Rating.vue', () => {
+  const wrapper = shallowMount(Rating, {
+    propsData: {
+      rating: '2.44',
+      ratings_count: 1
+    },
+    stubs: ['b-icon-star-fill', 'b-icon-star-half', 'b-icon-star']
+  })
+
+  it('tests for rating 2.44', () => {
+    expect(wrapper.isVueInstance()).toBeTruthy()
+    expect(wrapper.vm.ratings_count).toBe(1)
+    expect(wrapper.vm.full_stars).toBe(2)
+    expect(wrapper.vm.has_half_star).toBeGreaterThan(0)
+    expect(wrapper.vm.empty_stars).toBe(2)
+  })
+})
+
+// tests for rating 3
+describe('Rating.vue', () => {
+  const wrapper = shallowMount(Rating, {
+    propsData: {
+      rating: '3',
+      ratings_count: 1
+    },
+    stubs: ['b-icon-star-fill', 'b-icon-star-half', 'b-icon-star']
+  })
+
+  it('tests for rating 3', () => {
+    expect(wrapper.isVueInstance()).toBeTruthy()
+    expect(wrapper.vm.ratings_count).toBe(1)
+    expect(wrapper.vm.full_stars).toBe(3)
+    expect(wrapper.vm.has_half_star).toBe(0)
+    expect(wrapper.vm.empty_stars).toBe(2)
+  })
+})
+
+// tests for rating 0
+describe('Rating.vue', () => {
+  const wrapper = shallowMount(Rating, {
+    propsData: {
+      rating: '0',
+      ratings_count: 1
+    },
+    stubs: ['b-icon-star-fill', 'b-icon-star-half', 'b-icon-star']
+  })
+
+  it('tests for rating 0', () => {
+    expect(wrapper.isVueInstance()).toBeTruthy()
+    expect(wrapper.vm.ratings_count).toBe(1)
+    expect(wrapper.vm.full_stars).toBe(0)
+    expect(wrapper.vm.has_half_star).toBe(0)
+    expect(wrapper.vm.empty_stars).toBe(5)
+  })
+})
+
+// tests for rating 5.0
+describe('Rating.vue', () => {
+  const wrapper = shallowMount(Rating, {
+    propsData: {
+      rating: '5.0',
+      ratings_count: 1
+    },
+    stubs: ['b-icon-star-fill', 'b-icon-star-half', 'b-icon-star']
+  })
+
+  it('tests for rating 5.0', () => {
+    expect(wrapper.isVueInstance()).toBeTruthy()
+    expect(wrapper.vm.ratings_count).toBe(1)
+    expect(wrapper.vm.full_stars).toBe(5)
+    expect(wrapper.vm.has_half_star).toBe(0)
+    expect(wrapper.vm.empty_stars).toBe(0)
+  })
 })
