@@ -121,3 +121,23 @@ describe("Book.vue", () => {
         expect(wrapper.vm.formatted_publication_date).toBe("the day after tomorrow");
     });
 })
+
+describe("Book.vue", () => {
+
+    Date.now = jest.fn(() => new Date('05-11-2020'))
+    const wrapper = shallowMount(Book, options);
+
+    it("formatted_publication_date is 10 day ago", () => {
+        expect(wrapper.vm.formatted_publication_date).toBe("10 days ago");
+    });
+})
+
+describe("Book.vue", () => {
+
+    Date.now = jest.fn(() => new Date('04-20-2020'))
+    const wrapper = shallowMount(Book, options);
+
+    it("formatted_publication_date is 11 days from now", () => {
+        expect(wrapper.vm.formatted_publication_date).toBe("11 days from now");
+    });
+})
