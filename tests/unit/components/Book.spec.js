@@ -69,7 +69,7 @@ describe("Book.vue", () => {
         expect(wrapper.vm.show_smart_publication_date).toBeFalsy();
     });
 
-    it("get_random_genre gets random genre for two genres", () =>{
+    it("get_random_genre gets random genre for two genres", () => {
         expect(wrapper.vm.random_genre).toBeNull();
         expect(wrapper.vm.prev_index).toBe(0);
         wrapper.vm.get_random_genre();
