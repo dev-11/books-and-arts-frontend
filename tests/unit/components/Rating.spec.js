@@ -10,20 +10,25 @@ describe('Rating.vue', () => {
     stubs: ['b-icon-star-fill', 'b-icon-star-half', 'b-icon-star']
   })
 
-  // checks Rating is a component.
   it('Register is a component', () => {
     expect(wrapper.isVueInstance()).toBeTruthy()
   })
 
-//   // checks value of the counter is zero initially
-//   it('count is initially zero', () => {
-//     expect(wrapper.vm.count).toBe(0)
-//   })
+  it('rating count is set', () => {
+    expect(wrapper.vm.ratings_count).toBe(1)
+  })
 
-//   // check the button present or not
-//   it('is the button present', () => {
-//     expect(wrapper.contains('button')).toBe(true)
-//   })
+  it('full_stars is one', () => {
+    expect(wrapper.vm.full_stars).toBe(1)
+  })
+
+  it('has_half_stars is false', () => {
+    expect(wrapper.vm.has_half_star).toBe(0)
+  })
+
+  it('empty_stars is zero', () => {
+    expect(wrapper.vm.empty_stars).toBe(4)
+  })
 
 //   // checks the counter increment on clicking the button
 //   it('counter incremented or not', () => {
