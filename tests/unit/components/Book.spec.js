@@ -68,6 +68,14 @@ describe("Book.vue", () => {
         wrapper.vm.switch_publication_date_format();
         expect(wrapper.vm.show_smart_publication_date).toBeFalsy();
     });
+
+    it("get_random_genre gets random genre for two genres", () =>{
+        expect(wrapper.vm.random_genre).toBeNull()
+        expect(wrapper.vm.prev_index).toBe(0)
+        wrapper.vm.get_random_genre()
+        expect(wrapper.vm.random_genre).not.toBeNull()
+        expect(wrapper.vm.prev_index).toBe(1)
+    }); 
 });
 
 
