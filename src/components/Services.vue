@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="justify-content-center d-flex flex-wrap" v-if="service.service_type === 'books'">
-      <div v-bind:key="i" v-for="(book, i) in books">
-        <Book v-bind:info="book"/>
-      </div>
-    </div>
-    <div v-else class="card-deck justify-content-center">
-      <div v-bind:key="art.id" v-for="art in service.data.exhibitions">
-        <Exhibition v-bind:info="art" />
+    <div class="justify-content-center d-flex flex-wrap">
+      <div v-bind:key="i" v-for="(item, i) in books_and_arts">
+        <div v-if="item.type === 'books'">
+          <Book v-bind:info="item" />
+        </div>
+        <div v-if="item.type === 'arts'">
+          <Exhibition v-bind:info="item" />
+        </div>
       </div>
     </div>
   </div>
@@ -23,20 +23,42 @@ export default {
     Book,
     Exhibition
   },
-  props: {
-    service: Object
-  },
-  computed:{
-    books: function(){
-      let result = []
-      this.service.data.forEach(section => {
-        if(this.service.service_type === 'books'){
-          section.books.forEach(book => {
-            result.push({
-              'book': book,
-              'section': section.section
+  props: 
+    ['service']
+  ,
+  computed: {
+    books_and_arts: function(){
+      let result = this.books.concat(this.arts);
+      return result
+    },
+    books: function() {
+      let result = [];
+      this.service.forEach(service => {
+        if (service.service_type === "books") {
+          service.data.forEach(section => {
+            section.books.forEach(book => {
+              result.push({
+                book: book,
+                section: section.section,
+                type: service.service_type
+              });
             });
-          })
+          });
+        }
+      });
+      return result;
+    },
+    arts: function(){
+      let result = [];
+      this.service.forEach(service => {
+        if (service.service_type === "arts") {
+          service.data.exhibitions.forEach(exhibition => {
+              result.push({
+                exhibition: exhibition,
+                section: service.data.section,
+                type: service.service_type
+              });
+            });
         }
       });
       return result;

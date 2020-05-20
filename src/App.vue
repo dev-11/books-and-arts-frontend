@@ -10,9 +10,7 @@
         </div>
       </div>
       <div v-else>
-        <div v-bind:key="s.full_name" v-for="s in services">
-          <Services v-bind:service="s" />
-        </div>
+        <Services v-bind:service="services" />
       </div>
     </section>
   </div>
@@ -38,8 +36,6 @@ export default {
     axios
       .get("https://api.masterbranch.io/b/bna")
       .then(response => (this.services = response.data.body.data))
-      // .then(response => this.services = response.data.body.data[2].data)
-      // .then(response => (this.services = response.data.body.data[1].data))
       .catch(error => {
         console.log(error);
         this.errored = true;

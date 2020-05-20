@@ -53,7 +53,7 @@
                     <b-icon-book />
                     {{ book.number_of_pages }} pages
                   </div>
-                  <div v-if="book.published_ad !==''" class="text-capitalize">
+                  <div v-if="book.published_ad !==''" class="capitalize_first_word">
                     <b-icon-calendar style="float: left;" class="mr-1" />
                     <div v-if="show_smart_publication_date">{{ this.formatted_publication_date }}</div>
                     <div v-else>{{ book.published_at }}</div>
@@ -311,5 +311,9 @@ div:active {
 
 .checked {
   color: orange;
+}
+
+capitalize_first_word {
+  text-transform: capitalize;
 }
 </style>
