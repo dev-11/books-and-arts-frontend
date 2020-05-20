@@ -76,7 +76,7 @@ describe("Book.vue", () => {
     Date.now = jest.fn(() => new Date('05-01-2020'))
     const wrapper = shallowMount(Book, options);
 
-    it("formatted_publication is today", () => {
+    it("formatted_publication_date is today", () => {
         expect(wrapper.vm.formatted_publication_date).toBe("today");
     });
 })
@@ -86,7 +86,7 @@ describe("Book.vue", () => {
     Date.now = jest.fn(() => new Date('05-02-2020'))
     const wrapper = shallowMount(Book, options);
 
-    it("formatted_publication is yesterday", () => {
+    it("formatted_publication_date is yesterday", () => {
 
         expect(wrapper.vm.formatted_publication_date).toBe("yesterday");
     });
@@ -97,7 +97,7 @@ describe("Book.vue", () => {
     Date.now = jest.fn(() => new Date('04-30-2020'))
     const wrapper = shallowMount(Book, options);
 
-    it("formatted_publication is tomorrow", () => {
+    it("formatted_publication_date is tomorrow", () => {
         expect(wrapper.vm.formatted_publication_date).toBe("tomorrow");
     });
 })
@@ -107,7 +107,7 @@ describe("Book.vue", () => {
     Date.now = jest.fn(() => new Date('05-03-2020'))
     const wrapper = shallowMount(Book, options);
 
-    it("formatted_publication is the day before yesterday", () => {
+    it("formatted_publication_date is the day before yesterday", () => {
         expect(wrapper.vm.formatted_publication_date).toBe("the day before yesterday");
     });
 })
@@ -117,7 +117,7 @@ describe("Book.vue", () => {
     Date.now = jest.fn(() => new Date('04-29-2020'))
     const wrapper = shallowMount(Book, options);
 
-    it("formatted_publication is the day after tomorrow", () => {
+    it("formatted_publication_date is the day after tomorrow", () => {
         expect(wrapper.vm.formatted_publication_date).toBe("the day after tomorrow");
     });
 })
