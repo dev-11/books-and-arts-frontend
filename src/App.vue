@@ -35,7 +35,7 @@ export default {
   created() {
     axios
       .get("https://api.masterbranch.io/b/bna")
-      .then(response => (this.services = response.data.body.data))
+      .then(response =>  (this.services = response.data.body.data))
       .catch(error => {
         console.log(error);
         this.errored = true;
