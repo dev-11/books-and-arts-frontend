@@ -27,13 +27,12 @@
         <div class="row">
           <div class="col">
             <div class="row">
-              <div @click="get_random_genre" class="col" style="background: #e9edde;">
+              <div class="col" style="background: #e9edde;">
                 <div>
                   <img v-bind:src="book.img" alt="Image" />
                 </div>
               </div>
               <div
-                @click="switch_publication_date_format"
                 class="col"
                 scrollable
                 style="background: #f4f6ef;"
@@ -53,12 +52,12 @@
                     <b-icon-book />
                     {{ book.number_of_pages }} pages
                   </div>
-                  <div v-if="book.published_ad !==''" class="capitalize_first_word">
+                  <div @click="switch_publication_date_format" v-if="book.published_ad !==''" class="capitalize_first_word">
                     <b-icon-calendar style="float: left;" class="mr-1" />
                     <div v-if="show_smart_publication_date">{{ this.formatted_publication_date }}</div>
                     <div v-else>{{ book.published_at }}</div>
                   </div>
-                  <div>
+                  <div @click="get_random_genre">
                     <b-icon-pencil-square />
                     {{ random_genre }}
                   </div>
