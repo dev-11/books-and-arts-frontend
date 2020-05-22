@@ -188,7 +188,7 @@ export default {
         localStorage.removeItem(this.book.id);
         this.is_liked = false;
       }else{
-          localStorage.setItem(this.book.id, 'placeholder-value');
+          localStorage.setItem(this.book.id, 'checked');
           this.is_liked = true;
       }
     }
