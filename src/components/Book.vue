@@ -36,10 +36,9 @@
               </div>
               <div
                 class="col"
-                scrollable
                 style="background: #f4f6ef;"
               >
-                <b-card-body>
+                <div class="mt-4 mr-2 ml-2">
                   <div class="corner" @click="toogle_liked">
                     <favourite v-bind:checked="is_liked" />
                   </div>
@@ -90,15 +89,15 @@
                     Goodreads rating,
                     <br />refreshed daily.
                   </b-tooltip>
-                </b-card-body>
+                </div>
               </div>
             </div>
             <!-- <div style="background: #eef1e6;">
               {{section}}
             </div>-->
-            <b-card-text class="mt-3 mb-3 scroll" v-if="book.desc !== undefined">
+            <div class="mt-3 mb-3 scroll" v-if="book.desc !== undefined">
               <p v-bind:key="line" v-for="line in book.desc.split('\n')">{{line}}</p>
-            </b-card-text>
+            </div>
           </div>
         </div>
       </div>
@@ -228,8 +227,8 @@ div:active {
 }
 
 .scroll {
-  max-height: 400px;
-  overflow-y: auto;
+    max-height: 400px;
+    overflow-y: auto;
 }
 
 .checked {
