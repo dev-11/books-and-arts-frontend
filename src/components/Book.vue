@@ -1,8 +1,11 @@
 <template>
   <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;">
-    <div v-b-modal="info.id">
-      <div class="image-box">
+    <div>
+      <div class="image-box" v-b-modal="info.id">
         <img v-bind:src="book.img" alt="asdf" />
+      </div>
+       <div class="corner m-2" @click="toogle_liked">
+        <favourite v-bind:checked="is_liked"/>
       </div>
       <!-- <div class="container" style="background: #eef1e6;">
         {{section}}
@@ -39,6 +42,9 @@
                 style="background: #f4f6ef;"
               >
                 <b-card-body>
+                  <div class="corner" @click="toogle_liked">
+                    <favourite v-bind:checked="is_liked" />
+                  </div>
                   <div class="font-weight-bold">{{book.title}}</div>
                   <div class="font-italic">by {{ book.authors }}</div>
                   <div class="mt-3">
@@ -104,18 +110,21 @@
 
 <script>
 import Rating from "./Rating.vue";
+import Favourite from "./Favourite.vue"
 
 export default {
   name: "Book",
   components: {
-    Rating
+    Rating,
+    Favourite
   },
   data() {
     return {
       random_genre: null,
       prev_index: 0,
       show_smart_publication_date: true,
-      book: this.info.book
+      book: this.info.book,
+      is_liked: false
     };
   },
   computed: {
@@ -174,8 +183,22 @@ export default {
         return abs_days + " " + day + " ago";
       }
       return abs_days + " " + day + " from now";
+    },
+    toogle_liked(){
+      if (localStorage.getItem(this.book.id)) {
+        localStorage.removeItem(this.book.id);
+        this.is_liked = false;
+      }else{
+          localStorage.setItem(this.book.id, 'placeholder-value');
+          this.is_liked = true;
+      }
     }
-  }
+  },
+  mounted() {
+    if (localStorage.getItem(this.book.id)) {
+      this.is_liked = true;
+    }
+  },
 };
 </script>
 
@@ -202,7 +225,7 @@ export default {
   justify-content: center;
   -ms-flex-pack: center;
   position: relative;
-  cursor: pointer;
+  cursor: pointer; 
 }
 .image-box img {
   width: 45%;
@@ -299,6 +322,12 @@ div img {
   box-shadow: 7px 4px 11px -1px rgba(0, 0, 0, 0.3);
 }
 
+img:focus,
+img:active {
+  outline: none !important;
+  /* box-shadow: none; */
+}
+
 div:focus,
 div:active {
   outline: none !important;
@@ -317,4 +346,9 @@ div:active {
 capitalize_first_word {
   text-transform: capitalize;
 }
+
+.corner{
+  float: right;
+}
+
 </style>
