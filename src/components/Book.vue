@@ -2,7 +2,7 @@
   <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;">
     <div>
       <div class="image-box" v-b-modal="info.id">
-        <img v-bind:src="book.img" alt="asdf" />
+        <img v-bind:src="book.img" onerror="this.src='./assets/cover_coming_soon.jpg';"/>
       </div>
        <div class="corner m-2" @click="toogle_liked">
         <favourite v-bind:checked="is_liked"/>
@@ -31,7 +31,7 @@
             <div class="row">
               <div class="col" style="background: #e9edde;">
                 <div>
-                  <img v-bind:src="book.img" alt="Image" />
+                  <img v-bind:src="book.img" onerror="this.src='./assets/cover_coming_soon.jpg';"/>
                 </div>
               </div>
               <div
@@ -218,8 +218,6 @@ div img {
   bottom: 0;
   margin: auto;
   box-shadow: 7px 4px 11px -1px rgba(0, 0, 0, 0.3);
-  background: url("https://masterbranch.io/logo.png") center center no-repeat
-    transparent;
   background-size: cover; /* for new browsers */
 }
 
