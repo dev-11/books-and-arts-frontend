@@ -248,5 +248,6 @@ div:active {
 .close-button{
   position: absolute;
   left: 0;
+  cursor: pointer;
 }
 </style>
