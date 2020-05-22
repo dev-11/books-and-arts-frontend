@@ -1,5 +1,5 @@
 <template>
-  <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;">
+  <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;" v-if="is_visible">
     <div>
       <div class="image-box" v-b-modal="info.id">
         <img v-bind:src="book.img" onerror="this.src='./assets/cover_coming_soon.jpg';"/>
@@ -125,7 +125,7 @@ export default {
       show_smart_publication_date: true,
       book: this.info.book,
       is_liked: false,
-      show_modal: true
+      is_visible: true
     };
   },
   computed: {
@@ -198,7 +198,7 @@ export default {
       this.$bvModal.hide(this.info.id);
     }
   },
-  mounted() {
+  created() {
     if (localStorage.getItem(this.book.id)) {
       this.is_liked = true;
     }

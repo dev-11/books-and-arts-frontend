@@ -1,12 +1,36 @@
 <template>
   <div>
+  <b-navbar sticky>
+    <b-navbar-brand>Books and Arts</b-navbar-brand>
+
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav>
+        <b-nav-item @click="toggle_favs">
+          <div v-if="favs_only">
+            <b-icon-heart-fill class="text-danger"/>
+          </div>
+          <div v-else>
+            <b-icon-heart class="text-danger"/>
+          </div>
+        </b-nav-item>
+      </b-navbar-nav>
+
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="ml-auto">
+        <b-nav-form class="d-inline w-100">
+          <b-form-input size="sm" placeholder="Search"></b-form-input>
+        </b-nav-form>
+      </b-navbar-nav>
+    </b-collapse>
+  </b-navbar>
+
     <div class="justify-content-center d-flex flex-wrap">
       <div v-bind:key="i" v-for="(item, i) in books_and_arts">
         <div v-if="item.type === 'books'">
-          <Book v-bind:info="item" />
+          <Book v-bind:info="item" ref="item"/>
         </div>
         <div v-if="item.type === 'arts'">
-          <Exhibition v-bind:info="item" />
+          <Exhibition v-bind:info="item" ref="item"/>
         </div>
       </div>
     </div>
@@ -65,6 +89,33 @@ export default {
       });
       return result;
     }
+  },
+  methods:{
+    toggle_favs(){  
+      this.favs_only = !this.favs_only;
+      this.$refs.item.forEach(card => {
+          if(card.info.type === "books" && card.is_liked !== true){
+            card.is_visible = !this.favs_only;
+          }
+        }
+      );
+    }
+  },
+  data() {
+    return {
+      favs_only: false
+    }
   }
 };
 </script>
+
+<style>
+.navbar {
+    -webkit-box-shadow: 0 8px 6px -6px #999;
+    -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
+  background-color: #f4f4ed;
+
+    /* the rest of your styling */
+}
+</style>
