@@ -30,6 +30,9 @@
           <div class="col">
             <div class="row">
               <div class="col" style="background: #e9edde;">
+                <div class="close-button">
+                  <b-icon-x font-scale="1.2" @click="close_modal"/>
+                </div>
                 <div>
                   <img v-bind:src="book.img" onerror="this.src='./assets/cover_coming_soon.jpg';"/>
                 </div>
@@ -95,7 +98,7 @@
             <!-- <div style="background: #eef1e6;">
               {{section}}
             </div>-->
-            <div class="mt-3 mb-3 scroll" v-if="book.desc !== undefined">
+            <div class="mt-3 mb-3" v-if="book.desc !== undefined">
               <p v-bind:key="line" v-for="line in book.desc.split('\n')">{{line}}</p>
             </div>
           </div>
@@ -121,7 +124,8 @@ export default {
       prev_index: 0,
       show_smart_publication_date: true,
       book: this.info.book,
-      is_liked: false
+      is_liked: false,
+      show_modal: true
     };
   },
   computed: {
@@ -189,6 +193,9 @@ export default {
           localStorage.setItem(this.book.id, 'checked');
           this.is_liked = true;
       }
+    },
+    close_modal(){
+      this.$bvModal.hide(this.info.id);
     }
   },
   mounted() {
@@ -226,11 +233,6 @@ div:active {
   box-shadow: none;
 }
 
-.scroll {
-    max-height: 400px;
-    overflow-y: auto;
-}
-
 .checked {
   color: orange;
 }
@@ -243,4 +245,8 @@ div:active {
   float: right;
 }
 
+.close-button{
+  position: absolute;
+  left: 0;
+}
 </style>
