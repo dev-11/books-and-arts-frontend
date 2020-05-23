@@ -91,7 +91,7 @@ export default {
     toggle_favs(){  
       this.favs_only = !this.favs_only;
       this.$refs.item.forEach(card => {
-          if(card.info.type === "books" && card.is_liked !== true){
+          if(card.is_liked !== true){
             card.is_visible = !this.favs_only;
           }
         }
@@ -122,8 +122,8 @@ export default {
 
 <style>
 .navbar {
-    -webkit-box-shadow: 0 8px 6px -6px #999;
-    -moz-box-shadow: 0 8px 6px -6px #999;
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
   background-color: #f4f4ed;
 }

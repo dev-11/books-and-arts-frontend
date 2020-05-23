@@ -1,8 +1,11 @@
 <template>
   <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;" v-if="is_visible">
-    <div v-b-modal="info.id">
-      <div class="image-box">
-        <img v-bind:src="details.img" alt="asdf" />
+    <div >
+      <div class="image-box" v-b-modal="info.id">
+        <img v-bind:src="details.img" onerror="this.src='./assets/cover_coming_soon.jpg';"/>
+      </div>
+       <div class="corner m-2" @click="toogle_liked">
+        <favourite v-bind:checked="is_liked"/>
       </div>
       <div>
         <div class="card-body">
@@ -24,23 +27,29 @@
           <div class="col">
             <div class="row">
               <div class="col" style="background: #D3E1E9;">
+               <div class="close-button">
+                  <b-icon-x font-scale="1.2" @click="close_modal"/>
+                </div>
                 <div>
                   <img v-bind:src="details.img" alt="Image" />
                 </div>
               </div>
               <div class="col" style="background: #e4edf2;">
-                <b-card-body>
+                <div class="mt-4 mr-2 ml-2">
+                  <div class="corner" @click="toogle_liked">
+                    <favourite v-bind:checked="is_liked" />
+                  </div>
                   <div class="font-weight-bold">{{details.title}}</div>
                   <div class="font-italic">by {{ details.authors }}</div>
                   <div class="mt-3">
                     <b-icon-eye />
                     {{ details.payment_type }}
                   </div>
-                  <div>
+                  <div class="mb-3">
                     <b-icon-calendar />
                     {{ details.date }}
                   </div>
-                </b-card-body>
+                </div>
               </div>
             </div>
             <b-card-text class="mt-3 mb-3">{{details.description}}</b-card-text>
@@ -52,17 +61,42 @@
 </template>
 
 <script>
+import Favourite from "./Favourite.vue"
+
 export default {
   name: "Exhibition",
+  components: {
+    Favourite
+  },
   data() {
     return {
       details: this.info.data,
+      is_liked: false,
       is_visible: true
     };
   },
   props: {
     info: Object
-  }
+  },
+  methods:{
+    toogle_liked(){
+      if (localStorage.getItem(this.details.id)) {
+        localStorage.removeItem(this.details.id);
+        this.is_liked = false;
+      }else{
+          localStorage.setItem(this.details.id, 'checked');
+          this.is_liked = true;
+      }
+    },
+    close_modal(){
+      this.$bvModal.hide(this.info.id);
+    }
+  },
+  created() {
+    if (localStorage.getItem(this.details.id)) {
+      this.is_liked = true;
+    }
+  },
 };
 </script>
 
@@ -70,120 +104,36 @@ export default {
 <style scoped>
 .image-box {
   background: #d3e1e9;
-  width: calc(100%);
-  height: 0;
   padding-bottom: calc(100%);
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  -ms-flex-pack: center;
   position: relative;
-  cursor: pointer;
+  cursor: pointer; 
 }
-.image-box img {
+
+div img {
   width: 45%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  top: 50%;
   position: absolute;
-  box-shadow: 7px 4px 11px -1px rgba(0, 0, 0, 0.3);
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-}
-
-.img-container {
-  text-align: center;
-  display: block;
-}
-
-.modal-window {
-  background: #eef1e6;
-  width: calc(100%);
-  height: 0;
-  padding-bottom: calc(100%);
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  -ms-flex-pack: center;
-  position: relative;
-  cursor: pointer;
-}
-
-div img {
-  position: absolute;
-  z-index: 1;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
   margin: auto;
   box-shadow: 7px 4px 11px -1px rgba(0, 0, 0, 0.3);
-}
-
-.item3 {
-  grid-area: main;
-}
-.item4 {
-  grid-area: right;
-}
-.item5 {
-  grid-area: footer;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-areas:
-    "main right"
-    "footer footer";
-  grid-gap: 1px;
-  background-color: #fff;
-  padding: 10px;
-}
-
-.grid-container > div {
-  background-color: #eef1e6;
-  text-align: center;
-  padding: 20px 0;
-  font-size: 30px;
-}
-div img {
-  width: 65%;
-  position: absolute;
-  z-index: 1;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
+  background-size: cover; /* for new browsers */
 }
 
 div:focus,
 div:active {
   outline: none !important;
   box-shadow: none;
+}
+
+.corner{
+  float: right;
+}
+
+.close-button{
+  position: absolute;
+  left: 0;
+  cursor: pointer;
 }
 </style>
