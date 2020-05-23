@@ -23,7 +23,7 @@
                 <b-icon-search />
               </div>
             </div>
-            <b-form-input class="no-blue-border" v-model="search" placeholder="Search for title or author" />
+            <b-form-input class="no-blue-border" type="search" v-model="search" placeholder="Search for title or author" />
           </div>
       </b-navbar-nav>
     </b-collapse>
