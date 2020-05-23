@@ -2,7 +2,7 @@
   <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;" v-if="is_visible">
     <div>
       <div class="image-box" v-b-modal="info.id">
-        <img v-bind:src="book.img" onerror="this.src='./assets/cover_coming_soon.jpg';"/>
+        <img v-bind:src="details.img" onerror="this.src='./assets/cover_coming_soon.jpg';"/>
       </div>
        <div class="corner m-2" @click="toogle_liked">
         <favourite v-bind:checked="is_liked"/>
@@ -12,8 +12,8 @@
       </div>-->
       <div>
         <div class="card-body">
-          <div class="card-text text-truncate">{{ book.title }}</div>
-          <div class="card-text text-truncate font-italic">{{ book.authors }}</div>
+          <div class="card-text text-truncate">{{ details.title }}</div>
+          <div class="card-text text-truncate font-italic">{{ details.authors }}</div>
         </div>
       </div>
     </div>
@@ -34,7 +34,7 @@
                   <b-icon-x font-scale="1.2" @click="close_modal"/>
                 </div>
                 <div>
-                  <img v-bind:src="book.img" onerror="this.src='./assets/cover_coming_soon.jpg';"/>
+                  <img v-bind:src="details.img" onerror="this.src='./assets/cover_coming_soon.jpg';"/>
                 </div>
               </div>
               <div
@@ -45,24 +45,24 @@
                   <div class="corner" @click="toogle_liked">
                     <favourite v-bind:checked="is_liked" />
                   </div>
-                  <div class="font-weight-bold">{{book.title}}</div>
-                  <div class="font-italic">by {{ book.authors }}</div>
+                  <div class="font-weight-bold">{{details.title}}</div>
+                  <div class="font-italic">by {{ details.authors }}</div>
                   <div class="mt-3">
                     <b-icon-bag />
-                    {{ book.price }}
+                    {{ details.price }}
                   </div>
                   <div>
                     <b-icon-book-half />
-                    {{ book.format }}
+                    {{ details.format }}
                   </div>
-                  <div v-if="book.number_of_pages !==''">
+                  <div v-if="details.number_of_pages !==''">
                     <b-icon-book />
-                    {{ book.number_of_pages }} pages
+                    {{ details.number_of_pages }} pages
                   </div>
-                  <div @click="switch_publication_date_format" v-if="book.published_ad !==''" class="capitalize_first_word">
+                  <div @click="switch_publication_date_format" v-if="details.published_ad !==''" class="capitalize_first_word">
                     <b-icon-calendar style="float: left;" class="mr-1" />
                     <div v-if="show_smart_publication_date">{{ this.formatted_publication_date }}</div>
-                    <div v-else>{{ book.published_at }}</div>
+                    <div v-else>{{ details.published_at }}</div>
                   </div>
                   <div @click="get_random_genre">
                     <b-icon-pencil-square />
@@ -70,12 +70,12 @@
                   </div>
                   <div
                     class="mb-3"
-                    v-if="Object.keys(book.rating).length !== 0"
+                    v-if="Object.keys(details.rating).length !== 0"
                     style="float: left;"
                   >
                     <rating
-                      v-bind:rating="book.rating.average_rating"
-                      v-bind:ratings_count="book.rating.work_ratings_count"
+                      v-bind:rating="details.rating.average_rating"
+                      v-bind:ratings_count="details.rating.work_ratings_count"
                       style="float: left;"
                       id="tooltip-target"
                     />
@@ -98,8 +98,8 @@
             <!-- <div style="background: #eef1e6;">
               {{section}}
             </div>-->
-            <div class="mt-3 mb-3" v-if="book.desc !== undefined">
-              <p v-bind:key="line" v-for="line in book.desc.split('\n')">{{line}}</p>
+            <div class="mt-3 mb-3" v-if="details.desc !== undefined">
+              <p v-bind:key="line" v-for="line in details.desc.split('\n')">{{line}}</p>
             </div>
           </div>
         </div>
@@ -123,14 +123,14 @@ export default {
       random_genre: null,
       prev_index: 0,
       show_smart_publication_date: true,
-      book: this.info.book,
+      details: this.info.data,
       is_liked: false,
       is_visible: true
     };
   },
   computed: {
     formatted_publication_date: function() {
-      let d = this.book.published_at.split("/");
+      let d = this.details.published_at.split("/");
       let date = new Date(+d[2], +d[1] - 1, +d[0]);
       let now = new Date(Date.now()); // to make it testable
       let diff = now.getTime() - date.getTime();
@@ -144,14 +144,14 @@ export default {
   },
   methods: {
     get_random_genre() {
-      var new_index = Math.floor(Math.random() * this.book.genres.length);
-      if (this.book.genres.length > 1) {
+      var new_index = Math.floor(Math.random() * this.details.genres.length);
+      if (this.details.genres.length > 1) {
         while (new_index == this.prev_index) {
-          new_index = Math.floor(Math.random() * this.book.genres.length);
+          new_index = Math.floor(Math.random() * this.details.genres.length);
         }
       }
       this.prev_index = new_index;
-      this.random_genre = this.book.genres[new_index];
+      this.random_genre = this.details.genres[new_index];
     },
     switch_publication_date_format() {
       this.show_smart_publication_date = !this.show_smart_publication_date;
@@ -186,11 +186,11 @@ export default {
       return abs_days + " " + day + " from now";
     },
     toogle_liked(){
-      if (localStorage.getItem(this.book.id)) {
-        localStorage.removeItem(this.book.id);
+      if (localStorage.getItem(this.details.id)) {
+        localStorage.removeItem(this.details.id);
         this.is_liked = false;
       }else{
-          localStorage.setItem(this.book.id, 'checked');
+          localStorage.setItem(this.details.id, 'checked');
           this.is_liked = true;
       }
     },
@@ -199,7 +199,7 @@ export default {
     }
   },
   created() {
-    if (localStorage.getItem(this.book.id)) {
+    if (localStorage.getItem(this.details.id)) {
       this.is_liked = true;
     }
   },

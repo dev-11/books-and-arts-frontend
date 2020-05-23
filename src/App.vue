@@ -65,4 +65,9 @@ body {
   height: 50px;
   margin: auto;
 }
+
+#app{
+    width: 100%;
+}
+
 </style>

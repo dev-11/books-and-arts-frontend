@@ -17,9 +17,7 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-        <b-nav-form class="d-inline w-100">
-          <b-form-input size="sm" placeholder="Search"></b-form-input>
-        </b-nav-form>
+          <b-form-input size="sm" v-model="search" placeholder="Search for author or title"></b-form-input>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -52,8 +50,7 @@ export default {
   ,
   computed: {
     books_and_arts: function(){
-      let result = this.books.concat(this.arts);
-      return result
+      return this.books.concat(this.arts);
     },
     books: function() {
       let result = [];
@@ -62,7 +59,7 @@ export default {
           service.data.forEach(section => {
             section.books.forEach(book => {
               result.push({
-                book: book,
+                data: book,
                 section: section.section,
                 type: service.service_type,
                 id: book.id+service.full_name+section.section.replace(/ /g, "_")
@@ -79,7 +76,7 @@ export default {
         if (service.service_type === "arts") {
           service.data.exhibitions.forEach(exhibition => {
               result.push({
-                exhibition: exhibition,
+                data: exhibition,
                 section: service.data.section,
                 type: service.service_type,
                 id: exhibition.id+service.full_name
@@ -103,7 +100,21 @@ export default {
   },
   data() {
     return {
-      favs_only: false
+      favs_only: false,
+      search: ''
+    }
+  },
+  watch:{
+    search: function(val){
+      this.$refs.item.forEach(card => {
+          let query = val.toLowerCase();
+          let match1 = card.info.data.title.toLowerCase().includes(query);
+          let match2 = false;
+          if(card.info.type === "books"){
+              match2 = card.info.data.authors.toLowerCase().includes(query);
+          }
+          card.is_visible = match1 || match2
+      });
     }
   }
 };
@@ -115,7 +126,5 @@ export default {
     -moz-box-shadow: 0 8px 6px -6px #999;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
   background-color: #f4f4ed;
-
-    /* the rest of your styling */
 }
 </style>

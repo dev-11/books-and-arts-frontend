@@ -1,13 +1,13 @@
 <template>
-  <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;">
+  <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;" v-if="is_visible">
     <div v-b-modal="info.id">
       <div class="image-box">
-        <img v-bind:src="exhibition.img" alt="asdf" />
+        <img v-bind:src="details.img" alt="asdf" />
       </div>
       <div>
         <div class="card-body">
-          <div class="card-text text-truncate">{{ exhibition.title }}</div>
-          <div class="card-text text-truncate font-italic">{{ exhibition.date }}</div>
+          <div class="card-text text-truncate">{{ details.title }}</div>
+          <div class="card-text text-truncate font-italic">{{ details.date }}</div>
         </div>
       </div>
     </div>
@@ -25,25 +25,25 @@
             <div class="row">
               <div class="col" style="background: #D3E1E9;">
                 <div>
-                  <img v-bind:src="exhibition.img" alt="Image" />
+                  <img v-bind:src="details.img" alt="Image" />
                 </div>
               </div>
               <div class="col" style="background: #e4edf2;">
                 <b-card-body>
-                  <div class="font-weight-bold">{{exhibition.title}}</div>
-                  <div class="font-italic">by {{ exhibition.authors }}</div>
+                  <div class="font-weight-bold">{{details.title}}</div>
+                  <div class="font-italic">by {{ details.authors }}</div>
                   <div class="mt-3">
                     <b-icon-eye />
-                    {{ exhibition.payment_type }}
+                    {{ details.payment_type }}
                   </div>
                   <div>
                     <b-icon-calendar />
-                    {{ exhibition.date }}
+                    {{ details.date }}
                   </div>
                 </b-card-body>
               </div>
             </div>
-            <b-card-text class="mt-3 mb-3">{{exhibition.description}}</b-card-text>
+            <b-card-text class="mt-3 mb-3">{{details.description}}</b-card-text>
           </div>
         </div>
       </div>
@@ -56,7 +56,8 @@ export default {
   name: "Exhibition",
   data() {
     return {
-      exhibition: this.info.exhibition
+      details: this.info.data,
+      is_visible: true
     };
   },
   props: {
