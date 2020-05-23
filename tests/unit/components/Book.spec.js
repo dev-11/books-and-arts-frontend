@@ -6,7 +6,7 @@ import Book from "@/components/Book.vue";
 const options =  {
     propsData: {
         info: {
-            book:
+            data:
             {
                 "id": "95dc3a9ac68444a4b90f3e85aec3db9d",
                 "title": "test_title",
@@ -39,7 +39,8 @@ const options =  {
         "b-tooltip",
         "b-icon-pencil-square",
         "b-icon-book",
-        "b-icon-book-half"
+        "b-icon-book-half",
+        "b-icon-x"
     ]
 };
 
@@ -49,18 +50,18 @@ describe("Book.vue", () => {
 
     it("book has given data from prop", () => {
         expect(wrapper.isVueInstance()).toBeTruthy();
-        expect(wrapper.vm.book.id).toBe("95dc3a9ac68444a4b90f3e85aec3db9d");
-        expect(wrapper.vm.book.title).toBe("test_title");
-        expect(wrapper.vm.book.authors).toBe("test_authors");
-        expect(wrapper.vm.book.desc).toBe("test_desc");
-        expect(wrapper.vm.book.img).toBe("test_img");
-        expect(wrapper.vm.book.genres[0]).toBe("test_genre_1");
-        expect(wrapper.vm.book.genres[1]).toBe("test_genre_2");
-        expect(wrapper.vm.book.number_of_pages).toBe("352");
-        expect(wrapper.vm.book.published_at).toBe("01/05/2020");
-        expect(wrapper.vm.book.isbn).toBe("test_isbn");
-        expect(wrapper.vm.book.rating.work_ratings_count).toBe(603);
-        expect(wrapper.vm.book.rating.average_rating).toBe("3.91");
+        expect(wrapper.vm.details.id).toBe("95dc3a9ac68444a4b90f3e85aec3db9d");
+        expect(wrapper.vm.details.title).toBe("test_title");
+        expect(wrapper.vm.details.authors).toBe("test_authors");
+        expect(wrapper.vm.details.desc).toBe("test_desc");
+        expect(wrapper.vm.details.img).toBe("test_img");
+        expect(wrapper.vm.details.genres[0]).toBe("test_genre_1");
+        expect(wrapper.vm.details.genres[1]).toBe("test_genre_2");
+        expect(wrapper.vm.details.number_of_pages).toBe("352");
+        expect(wrapper.vm.details.published_at).toBe("01/05/2020");
+        expect(wrapper.vm.details.isbn).toBe("test_isbn");
+        expect(wrapper.vm.details.rating.work_ratings_count).toBe(603);
+        expect(wrapper.vm.details.rating.average_rating).toBe("3.91");
     });
 
     it("switch_publication_date_format switches show_smart_publication_date", () => {

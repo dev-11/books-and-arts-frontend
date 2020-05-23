@@ -70,7 +70,14 @@ describe("Services.vue", () => {
             "b-tooltip",
             "b-icon-pencil-square",
             "b-icon-book",
-            "b-icon-book-half"
+            "b-icon-book-half",
+            "b-form-input",
+            "b-navbar",
+            "b-navbar-brand",
+            "b-collapse",
+            "b-navbar-nav",
+            "b-nav-item",
+            "b-icon-heart"
         ]
     });
 
@@ -79,17 +86,17 @@ describe("Services.vue", () => {
         expect(wrapper.vm.books[0].id).toBe("95dc3a9ac68444a4b90f3e85aec3db9dtest_family.test_servicetest_section");
         expect(wrapper.vm.books[0].section).toBe("test_section");
         expect(wrapper.vm.books[0].type).toBe("books");
-        expect(wrapper.vm.books[0].book.title).toBe("test_title");
-        expect(wrapper.vm.books[0].book.authors).toBe("test_authors");
-        expect(wrapper.vm.books[0].book.desc).toBe("test_desc");
-        expect(wrapper.vm.books[0].book.img).toBe("test_img");
-        expect(wrapper.vm.books[0].book.genres[0]).toBe("test_genre_1");
-        expect(wrapper.vm.books[0].book.genres[1]).toBe("test_genre_2");
-        expect(wrapper.vm.books[0].book.number_of_pages).toBe("352");
-        expect(wrapper.vm.books[0].book.published_at).toBe("30/04/2020");
-        expect(wrapper.vm.books[0].book.isbn).toBe("test_isbn");
-        expect(wrapper.vm.books[0].book.rating.work_ratings_count).toBe(603);
-        expect(wrapper.vm.books[0].book.rating.average_rating).toBe("3.91");
+        expect(wrapper.vm.books[0].data.title).toBe("test_title");
+        expect(wrapper.vm.books[0].data.authors).toBe("test_authors");
+        expect(wrapper.vm.books[0].data.desc).toBe("test_desc");
+        expect(wrapper.vm.books[0].data.img).toBe("test_img");
+        expect(wrapper.vm.books[0].data.genres[0]).toBe("test_genre_1");
+        expect(wrapper.vm.books[0].data.genres[1]).toBe("test_genre_2");
+        expect(wrapper.vm.books[0].data.number_of_pages).toBe("352");
+        expect(wrapper.vm.books[0].data.published_at).toBe("30/04/2020");
+        expect(wrapper.vm.books[0].data.isbn).toBe("test_isbn");
+        expect(wrapper.vm.books[0].data.rating.work_ratings_count).toBe(603);
+        expect(wrapper.vm.books[0].data.rating.average_rating).toBe("3.91");
     });
 
     it("books_and_arts is a flat array of the incoming books and arts", () => {
@@ -97,25 +104,25 @@ describe("Services.vue", () => {
         expect(wrapper.vm.books_and_arts[0].id).toBe("95dc3a9ac68444a4b90f3e85aec3db9dtest_family.test_servicetest_section");
         expect(wrapper.vm.books_and_arts[0].section).toBe("test_section");
         expect(wrapper.vm.books_and_arts[0].type).toBe("books");
-        expect(wrapper.vm.books_and_arts[0].book.title).toBe("test_title");
-        expect(wrapper.vm.books_and_arts[0].book.authors).toBe("test_authors");
-        expect(wrapper.vm.books_and_arts[0].book.desc).toBe("test_desc");
-        expect(wrapper.vm.books_and_arts[0].book.img).toBe("test_img");
-        expect(wrapper.vm.books_and_arts[0].book.genres[0]).toBe("test_genre_1");
-        expect(wrapper.vm.books_and_arts[0].book.genres[1]).toBe("test_genre_2");
-        expect(wrapper.vm.books_and_arts[0].book.number_of_pages).toBe("352");
-        expect(wrapper.vm.books_and_arts[0].book.published_at).toBe("30/04/2020");
-        expect(wrapper.vm.books_and_arts[0].book.isbn).toBe("test_isbn");
-        expect(wrapper.vm.books_and_arts[0].book.rating.work_ratings_count).toBe(603);
-        expect(wrapper.vm.books_and_arts[0].book.rating.average_rating).toBe("3.91");
+        expect(wrapper.vm.books_and_arts[0].data.title).toBe("test_title");
+        expect(wrapper.vm.books_and_arts[0].data.authors).toBe("test_authors");
+        expect(wrapper.vm.books_and_arts[0].data.desc).toBe("test_desc");
+        expect(wrapper.vm.books_and_arts[0].data.img).toBe("test_img");
+        expect(wrapper.vm.books_and_arts[0].data.genres[0]).toBe("test_genre_1");
+        expect(wrapper.vm.books_and_arts[0].data.genres[1]).toBe("test_genre_2");
+        expect(wrapper.vm.books_and_arts[0].data.number_of_pages).toBe("352");
+        expect(wrapper.vm.books_and_arts[0].data.published_at).toBe("30/04/2020");
+        expect(wrapper.vm.books_and_arts[0].data.isbn).toBe("test_isbn");
+        expect(wrapper.vm.books_and_arts[0].data.rating.work_ratings_count).toBe(603);
+        expect(wrapper.vm.books_and_arts[0].data.rating.average_rating).toBe("3.91");
 
         expect(wrapper.vm.books_and_arts[1].id).toBe("422387899e19cb72b4eb39f210b5c909test_art_family.test_art_service");
         expect(wrapper.vm.books_and_arts[1].section).toBe("test_art_section");
         expect(wrapper.vm.books_and_arts[1].type).toBe("arts");
-        expect(wrapper.vm.books_and_arts[1].exhibition.title).toBe("test_title");
-        expect(wrapper.vm.books_and_arts[1].exhibition.payment_type).toBe("test_payment_type");
-        expect(wrapper.vm.books_and_arts[1].exhibition.date).toBe("test_date");
-        expect(wrapper.vm.books_and_arts[1].exhibition.description).toBe("test_desc");
-        expect(wrapper.vm.books_and_arts[1].exhibition.img).toBe("test_art_img");
+        expect(wrapper.vm.books_and_arts[1].data.title).toBe("test_title");
+        expect(wrapper.vm.books_and_arts[1].data.payment_type).toBe("test_payment_type");
+        expect(wrapper.vm.books_and_arts[1].data.date).toBe("test_date");
+        expect(wrapper.vm.books_and_arts[1].data.description).toBe("test_desc");
+        expect(wrapper.vm.books_and_arts[1].data.img).toBe("test_art_img");
     });
 });
