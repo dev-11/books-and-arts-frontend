@@ -17,7 +17,14 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-          <b-form-input size="sm" v-model="search" placeholder="Search for title or author"></b-form-input>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <b-icon-search />
+              </div>
+            </div>
+            <b-form-input class="no-blue-border" v-model="search" placeholder="Search for title or author" />
+          </div>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -127,6 +134,25 @@ export default {
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
   background-color: #f1f1f1;
 
+}
+
+.input-group-text{
+    background-color: #fff;
+    border-right-color: #fff !important;
+}
+
+.no-blue-border:focus,
+.no-blue-border:active
+{
+  outline: none !important;
+  box-shadow: none !important;
+  border-top-color: #ced4da !important;
+  border-right-color: #ced4da !important;
+  border-bottom-color: #ced4da !important;
+}
+
+.no-blue-border{
+  border-left-color: #fff !important;
 }
 
 .navbar-brand{
