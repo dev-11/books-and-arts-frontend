@@ -17,7 +17,7 @@
 
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
-          <b-form-input size="sm" v-model="search" placeholder="Search for author or title"></b-form-input>
+          <b-form-input size="sm" v-model="search" placeholder="Search for title or author"></b-form-input>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -125,6 +125,11 @@ export default {
   -webkit-box-shadow: 0 8px 6px -6px #999;
   -moz-box-shadow: 0 8px 6px -6px #999;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
-  background-color: #f4f4ed;
+  background-color: #f1f1f1;
+
+}
+
+.navbar-brand{
+  color: #434a49 !important;
 }
 </style>

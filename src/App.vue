@@ -49,7 +49,7 @@ export default {
 body {
   display: flex;
   justify-content: center;
-  background: #f5f5f5;
+  background: #f6f6f6;
   font-family: "Roboto Slab", serif;
   line-height: 1.4;
 }
