@@ -46,6 +46,8 @@
 import Book from "./Book.vue";
 import Exhibition from "./Exhibition.vue";
 
+const SHOW_FAVS_ONLY_FLAG = "show_favs_only";
+
 export default {
   name: "Services",
   components: {
@@ -96,6 +98,10 @@ export default {
   },
   methods:{
     toggle_favs(){  
+      this.udpate_favs_only();
+      this.toggle_is_visible();
+    },
+    toggle_is_visible(){
       this.favs_only = !this.favs_only;
       this.$refs.item.forEach(card => {
           if(card.is_liked !== true){
@@ -103,6 +109,13 @@ export default {
           }
         }
       );
+    },
+    udpate_favs_only(){
+      if(localStorage.getItem(SHOW_FAVS_ONLY_FLAG)){
+        localStorage.removeItem(SHOW_FAVS_ONLY_FLAG);
+      } else {
+        localStorage.setItem(SHOW_FAVS_ONLY_FLAG, 'checked');
+      }
     }
   },
   data() {
@@ -122,6 +135,11 @@ export default {
           }
           card.is_visible = match1 || match2
       });
+    }
+  },
+  mounted(){
+    if(localStorage.getItem(SHOW_FAVS_ONLY_FLAG)){
+      this.toggle_is_visible();
     }
   }
 };

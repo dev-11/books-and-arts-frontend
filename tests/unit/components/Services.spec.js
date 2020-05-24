@@ -1,5 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
 import Services from "@/components/Services.vue";
+import LocalStorageMock from "../../mocks/LocalStorage.mock"
 
 
 describe("Services.vue", () => {
@@ -126,4 +127,28 @@ describe("Services.vue", () => {
         expect(wrapper.vm.books_and_arts[1].data.description).toBe("test_desc");
         expect(wrapper.vm.books_and_arts[1].data.img).toBe("test_art_img");
     });
+
+    it("show_favs_only flag is removed from local storage", () => {
+        global.localStorage = LocalStorageMock;
+
+        expect(localStorage.getItem('show_favs_only')).toBeFalsy();
+
+        wrapper.vm.udpate_favs_only();
+
+        expect(localStorage.getItem('show_favs_only')).toBeTruthy();
+
+    });
+
+    it("show_favs_only flag is removed from local storage", () => {
+        global.localStorage = LocalStorageMock;
+        localStorage.setItem("show_favs_only", "checked");
+
+        expect(localStorage.getItem("show_favs_only")).toBeTruthy();
+
+        wrapper.vm.udpate_favs_only();
+
+        expect(localStorage.getItem("show_favs_only")).toBeFalsy();
+
+    });
+
 });
