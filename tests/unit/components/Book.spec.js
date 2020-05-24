@@ -1,27 +1,7 @@
 import { shallowMount } from "@vue/test-utils";
 import Book from "@/components/Book.vue";
+import LocalStorageMock from "../../mocks/LocalStorage.mock"
 
-class LocalStorageMock {
-    constructor() {
-        this.store = {};
-    }
-
-    clear() {
-        this.store = {};
-    }
-
-    getItem(key) {
-        return this.store[key] || null;
-    }
-
-    setItem(key, value) {
-        this.store[key] = value.toString();
-    }
-
-    removeItem(key) {
-        delete this.store[key];
-    }
-};
 
 const options =  {
     propsData: {
@@ -171,7 +151,7 @@ describe("Book.vue", () => {
 });
 
 describe("Book.vue", () => {
-    global.localStorage = new LocalStorageMock;
+    global.localStorage = LocalStorageMock;
 
     it("toogle_liked flips is_liked to true and stores in localStorage", () => {
         const wrapper = shallowMount(Book, options);
