@@ -1,6 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
 import Exhibition from "@/components/Exhibition.vue";
-import LocalStorageMock from "../../mocks/LocalStorage.mock"
+import LocalStorageMock from "../../mocks/LocalStorage.mock";
 
 
 const options = {
@@ -46,7 +46,7 @@ describe("Exhibition.vue", () => {
         wrapper.vm.toogle_liked();
 
         expect(wrapper.vm.is_liked).toBeTruthy();
-        expect(localStorage.getItem(options.propsData.info.data.id)).toBe('checked');
+        expect(localStorage.getItem(options.propsData.info.data.id)).toBe("checked");
     });
 
     it("toogle_liked flips is_liked to false and removes it from localStorage", () => {

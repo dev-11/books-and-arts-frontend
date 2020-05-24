@@ -18,4 +18,4 @@ class LocalStorageMock {
     removeItem(key) {
         delete this.store[key];
     }
-};
+}

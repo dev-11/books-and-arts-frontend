@@ -77,7 +77,8 @@ describe("Services.vue", () => {
             "b-collapse",
             "b-navbar-nav",
             "b-nav-item",
-            "b-icon-heart"
+            "b-icon-heart",
+            "b-icon-search"
         ]
     });
 

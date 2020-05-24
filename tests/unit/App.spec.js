@@ -1,8 +1,8 @@
-import { shallowMount, createLocalVue } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import App from "@/App.vue";
-import axios from 'axios';
-import flushPromises from 'flush-promises'
-import MockAdapter from 'axios-mock-adapter';
+import axios from "axios";
+import flushPromises from "flush-promises";
+import MockAdapter from "axios-mock-adapter";
 
 
 const response_data = {
@@ -66,11 +66,11 @@ const response_data = {
     }
 };
 
-describe('App.vue', () => {
+describe("App.vue", () => {
     it("api returns data without error", async () => {
         const mockAxios = new MockAdapter(axios);
 
-        mockAxios.onGet().reply(200, response_data)
+        mockAxios.onGet().reply(200, response_data);
 
         const wrapper = shallowMount(App);
         await flushPromises();
@@ -114,7 +114,7 @@ describe('App.vue', () => {
     it("api return error", async () => {
         const mockAxios = new MockAdapter(axios);
 
-        mockAxios.onGet().reply(500)
+        mockAxios.onGet().reply(500);
 
         const wrapper = shallowMount(App);
         await flushPromises();

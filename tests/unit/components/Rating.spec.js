@@ -112,7 +112,7 @@ describe("Rating.vue", () => {
     expect(wrapper.vm.full_stars).toBe(5);
     expect(wrapper.vm.has_half_star).toBe(0);
     expect(wrapper.vm.empty_stars).toBe(0);
-    expect(wrapper.vm.smart_number).toBe('123.5k');
+    expect(wrapper.vm.smart_number).toBe("123.5k");
   });
 });
 
@@ -131,7 +131,7 @@ describe("Rating.vue", () => {
     expect(wrapper.vm.full_stars).toBe(5);
     expect(wrapper.vm.has_half_star).toBe(0);
     expect(wrapper.vm.empty_stars).toBe(0);
-    expect(wrapper.vm.smart_number).toBe('1k');
+    expect(wrapper.vm.smart_number).toBe("1k");
   });
 });
 
@@ -150,6 +150,6 @@ describe("Rating.vue", () => {
     expect(wrapper.vm.full_stars).toBe(5);
     expect(wrapper.vm.has_half_star).toBe(0);
     expect(wrapper.vm.empty_stars).toBe(0);
-    expect(wrapper.vm.smart_number).toBe('1k');
+    expect(wrapper.vm.smart_number).toBe("1k");
   });
 });
