@@ -171,7 +171,7 @@ describe("Book.vue", () => {
         localStorage.getItem(options.propsData.info.data.id, "checked");
 
         expect(wrapper.vm.is_liked).toBeTruthy();
-        expect(localStorage.getItem(options.propsData.info.data.id)).toBe('checked');
+        expect(localStorage.getItem(options.propsData.info.data.id)).toBe("checked");
         
         wrapper.vm.toogle_liked();
 
