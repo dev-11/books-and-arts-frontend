@@ -1,41 +1,46 @@
 <template>
   <div>
-  <b-navbar sticky>
-    <b-navbar-brand>Books and Arts</b-navbar-brand>
+    <b-navbar sticky>
+      <b-navbar-brand>Books and Arts</b-navbar-brand>
 
-    <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav>
-        <b-nav-item @click="toggle_favs">
-          <div v-if="favs_only">
-            <b-icon-heart-fill class="text-danger"/>
-          </div>
-          <div v-else>
-            <b-icon-heart class="text-danger"/>
-          </div>
-        </b-nav-item>
-      </b-navbar-nav>
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item @click="toggle_favs">
+            <div v-if="favs_only">
+              <b-icon-heart-fill class="text-danger" />
+            </div>
+            <div v-else>
+              <b-icon-heart class="text-danger" />
+            </div>
+          </b-nav-item>
+        </b-navbar-nav>
 
-      <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
+        <!-- Right aligned nav items -->
+        <b-navbar-nav class="ml-auto">
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">
                 <b-icon-search />
               </div>
             </div>
-            <b-form-input class="no-blue-border" type="search" v-model="search" placeholder="Search for title or author" />
+            <b-form-input
+              class="no-blue-border"
+              type="search"
+              v-model="search"
+              placeholder="Search for title or author"
+            />
           </div>
-      </b-navbar-nav>
-    </b-collapse>
-  </b-navbar>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
 
     <div class="justify-content-center d-flex flex-wrap">
       <div v-bind:key="i" v-for="(item, i) in books_and_arts">
         <div v-if="item.type === 'books'">
-          <Book v-bind:info="item" ref="item"/>
+          <Book v-bind:info="item" ref="item" />
         </div>
         <div v-if="item.type === 'arts'">
-          <Exhibition v-bind:info="item" ref="item"/>
+          <Exhibition v-bind:info="item" ref="item" />
         </div>
       </div>
     </div>
@@ -54,11 +59,9 @@ export default {
     Book,
     Exhibition
   },
-  props: 
-    ['service']
-  ,
+  props: ["service"],
   computed: {
-    books_and_arts: function(){
+    books_and_arts: function() {
       return this.books.concat(this.arts);
     },
     books: function() {
@@ -71,7 +74,10 @@ export default {
                 data: book,
                 section: section.section,
                 type: service.service_type,
-                id: book.id+service.full_name+section.section.replace(/ /g, "_")
+                id:
+                  book.id +
+                  service.full_name +
+                  section.section.replace(/ /g, "_")
               });
             });
           });
@@ -79,66 +85,75 @@ export default {
       });
       return result;
     },
-    arts: function(){
+    arts: function() {
       let result = [];
       this.service.forEach(service => {
         if (service.service_type === "arts") {
           service.data.exhibitions.forEach(exhibition => {
-              result.push({
-                data: exhibition,
-                section: service.data.section,
-                type: service.service_type,
-                id: exhibition.id+service.full_name
-              });
+            result.push({
+              data: exhibition,
+              section: service.data.section,
+              type: service.service_type,
+              id: exhibition.id + service.full_name
             });
+          });
         }
       });
       return result;
     }
   },
-  methods:{
-    toggle_favs(){  
+  methods: {
+    toggle_favs() {
       this.udpate_favs_only();
       this.toggle_is_visible();
     },
-    toggle_is_visible(){
+    toggle_is_visible() {
       this.favs_only = !this.favs_only;
       this.$refs.item.forEach(card => {
-          if(card.is_liked !== true){
+        if (card.is_liked !== true) {
+          if (this.search !== "") {
+            card.is_visible = this.has_match(card, this.search) && !this.favs_only;
+          } else {
             card.is_visible = !this.favs_only;
           }
         }
-      );
+      });
     },
-    udpate_favs_only(){
-      if(localStorage.getItem(SHOW_FAVS_ONLY_FLAG)){
+    has_match(card, val) {
+      let query = val.toLowerCase();
+      let match1 = card.info.data.title.toLowerCase().includes(query);
+      let match2 = false;
+      if (card.info.type === "books") {
+        match2 = card.info.data.authors.toLowerCase().includes(query);
+      }
+      return match1 || match2;
+    },
+    udpate_favs_only() {
+      if (localStorage.getItem(SHOW_FAVS_ONLY_FLAG)) {
         localStorage.removeItem(SHOW_FAVS_ONLY_FLAG);
       } else {
-        localStorage.setItem(SHOW_FAVS_ONLY_FLAG, 'checked');
+        localStorage.setItem(SHOW_FAVS_ONLY_FLAG, "checked");
       }
     }
   },
   data() {
     return {
       favs_only: false,
-      search: ''
-    }
+      search: ""
+    };
   },
-  watch:{
-    search: function(val){
+  watch: {
+    search: function(val) {
       this.$refs.item.forEach(card => {
-          let query = val.toLowerCase();
-          let match1 = card.info.data.title.toLowerCase().includes(query);
-          let match2 = false;
-          if(card.info.type === "books"){
-              match2 = card.info.data.authors.toLowerCase().includes(query);
-          }
-          card.is_visible = match1 || match2
+        card.is_visible = this.has_match(card, val);
+        if (this.favs_only) {
+          card.is_visible = card.is_visible && card.is_liked;
+        }
       });
     }
   },
-  mounted(){
-    if(localStorage.getItem(SHOW_FAVS_ONLY_FLAG)){
+  mounted() {
+    if (localStorage.getItem(SHOW_FAVS_ONLY_FLAG)) {
       this.toggle_is_visible();
     }
   }
@@ -151,17 +166,15 @@ export default {
   -moz-box-shadow: 0 8px 6px -6px #999;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.3);
   background-color: #f1f1f1;
-
 }
 
-.input-group-text{
-    background-color: #fff;
-    border-right-color: #fff !important;
+.input-group-text {
+  background-color: #fff;
+  border-right-color: #fff !important;
 }
 
 .no-blue-border:focus,
-.no-blue-border:active
-{
+.no-blue-border:active {
   outline: none !important;
   box-shadow: none !important;
   border-top-color: #ced4da !important;
@@ -169,11 +182,11 @@ export default {
   border-bottom-color: #ced4da !important;
 }
 
-.no-blue-border{
+.no-blue-border {
   border-left-color: #fff !important;
 }
 
-.navbar-brand{
+.navbar-brand {
   color: #434a49 !important;
 }
 </style>
