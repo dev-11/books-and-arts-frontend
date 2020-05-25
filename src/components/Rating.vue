@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import get_smart_number from "@/utils/parsers/smart_number_parser";
+import get_smart_number from "@/utils/formatters/smart_number_formatter";
 
 export default {
   name: "rating",

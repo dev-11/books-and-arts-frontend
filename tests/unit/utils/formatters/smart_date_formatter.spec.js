@@ -1,7 +1,7 @@
-import get_smart_number from "@/utils/parsers/smart_date_parser";
+import get_smart_number from "@/utils/formatters/smart_date_formatter";
 
 
-describe("smart_date_parser.js",()=>{
+describe("smart_date_formatter.js",()=>{
     it("day 0 returns today", () => {
         expect(get_smart_number(0)).toBe('today');
     });
