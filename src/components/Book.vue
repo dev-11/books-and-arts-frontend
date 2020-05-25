@@ -79,6 +79,8 @@
                       style="float: left;"
                       id="tooltip-target"
                     />
+                    <!-- <b-icon-eye-slash/>
+                    <b-icon-eye/> -->
                   </div>
                   <div class="mb-3" v-else style="float: left;">
                     <rating
