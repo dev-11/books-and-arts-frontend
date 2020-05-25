@@ -133,7 +133,7 @@ describe("Services.vue", () => {
 
         expect(localStorage.getItem('show_favs_only')).toBeFalsy();
 
-        wrapper.vm.udpate_favs_only();
+        wrapper.vm.udpate_local_storage("show_favs_only");
 
         expect(localStorage.getItem('show_favs_only')).toBeTruthy();
 
@@ -145,7 +145,7 @@ describe("Services.vue", () => {
 
         expect(localStorage.getItem("show_favs_only")).toBeTruthy();
 
-        wrapper.vm.udpate_favs_only();
+        wrapper.vm.udpate_local_storage("show_favs_only");
 
         expect(localStorage.getItem("show_favs_only")).toBeFalsy();
 

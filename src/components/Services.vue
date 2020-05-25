@@ -5,12 +5,28 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item @click="toggle_favs">
-            <div v-if="favs_only">
+          <b-nav-item @click="show_favs_only = !show_favs_only">
+            <div v-if="show_favs_only">
               <b-icon-heart-fill class="text-danger" />
             </div>
             <div v-else>
               <b-icon-heart class="text-danger" />
+            </div>
+          </b-nav-item>
+          <b-nav-item @click="show_books = !show_books">
+            <div v-if="show_books">
+              <b-icon-circle-fill class="books" />
+            </div>
+            <div v-else>
+              <b-icon-circle class="books" />
+            </div>
+          </b-nav-item>
+          <b-nav-item @click="show_arts = !show_arts">
+            <div v-if="show_arts">
+              <b-icon-circle-fill class="arts" />
+            </div>
+            <div v-else>
+              <b-icon-circle class="arts" />
             </div>
           </b-nav-item>
         </b-navbar-nav>
@@ -33,7 +49,6 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-
     <div class="justify-content-center d-flex flex-wrap">
       <div v-bind:key="i" v-for="(item, i) in books_and_arts">
         <div v-if="item.type === 'books'">
@@ -52,6 +67,8 @@ import Book from "./Book.vue";
 import Exhibition from "./Exhibition.vue";
 
 const SHOW_FAVS_ONLY_FLAG = "show_favs_only";
+const HIDE_BOOKS_FLAG = "hide_books";
+const HIDE_ARTS_FLAG = "hide_arts";
 
 export default {
   name: "Services",
@@ -103,20 +120,23 @@ export default {
     }
   },
   methods: {
-    toggle_favs() {
-      this.udpate_favs_only();
-      this.toggle_is_visible();
+    can_show_card(card){
+      let show_liked =  this.show_favs_only !== true || card.is_liked === true;
+      let show_card_by_type= false;
+      if(card.info.type === 'books')
+      {
+        show_card_by_type = this.show_books;
+      }
+      else
+      {
+        show_card_by_type = this.show_arts;
+      }
+      let has_match = this.has_match(card, this.search);
+      return show_liked && show_card_by_type && has_match;
     },
-    toggle_is_visible() {
-      this.favs_only = !this.favs_only;
+    toggle_cards() {
       this.$refs.item.forEach(card => {
-        if (card.is_liked !== true) {
-          if (this.search !== "") {
-            card.is_visible = this.has_match(card, this.search) && !this.favs_only;
-          } else {
-            card.is_visible = !this.favs_only;
-          }
-        }
+        card.is_visible = this.can_show_card(card);
       });
     },
     has_match(card, val) {
@@ -128,34 +148,47 @@ export default {
       }
       return match1 || match2;
     },
-    udpate_favs_only() {
-      if (localStorage.getItem(SHOW_FAVS_ONLY_FLAG)) {
-        localStorage.removeItem(SHOW_FAVS_ONLY_FLAG);
+    udpate_local_storage(key) {
+      if (localStorage.getItem(key)) {
+        localStorage.removeItem(key);
       } else {
-        localStorage.setItem(SHOW_FAVS_ONLY_FLAG, "checked");
+        localStorage.setItem(key, "checked");
       }
+    },
+    init_from_localStorage(key) {
+      if (localStorage.getItem(key)) {
+        return true;
+      }
+      return false;
     }
   },
   data() {
     return {
-      favs_only: false,
+      show_favs_only: this.init_from_localStorage(SHOW_FAVS_ONLY_FLAG),
+      show_books: !this.init_from_localStorage(HIDE_BOOKS_FLAG),
+      show_arts: !this.init_from_localStorage(HIDE_ARTS_FLAG),
       search: ""
-    };
+    }
   },
   watch: {
-    search: function(val) {
-      this.$refs.item.forEach(card => {
-        card.is_visible = this.has_match(card, val);
-        if (this.favs_only) {
-          card.is_visible = card.is_visible && card.is_liked;
-        }
-      });
+    search: function() {
+      this.toggle_cards();
+    },
+    show_arts: function() {
+      this.udpate_local_storage(HIDE_ARTS_FLAG);
+      this.toggle_cards();
+    },
+    show_books: function() {
+      this.udpate_local_storage(HIDE_BOOKS_FLAG);
+      this.toggle_cards();
+    },
+    show_favs_only: function() {
+      this.udpate_local_storage(SHOW_FAVS_ONLY_FLAG);
+      this.toggle_cards();
     }
   },
-  mounted() {
-    if (localStorage.getItem(SHOW_FAVS_ONLY_FLAG)) {
-      this.toggle_is_visible();
-    }
+  mounted: function () {
+    this.toggle_cards();
   }
 };
 </script>
@@ -188,5 +221,13 @@ export default {
 
 .navbar-brand {
   color: #434a49 !important;
+}
+
+.books {
+  color: #e9edde;
+}
+
+.arts {
+  color: #D3E1E9;
 }
 </style>
