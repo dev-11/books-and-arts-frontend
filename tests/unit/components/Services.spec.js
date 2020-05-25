@@ -79,7 +79,9 @@ describe("Services.vue", () => {
             "b-navbar-nav",
             "b-nav-item",
             "b-icon-heart",
-            "b-icon-search"
+            "b-icon-search",
+            "b-icon-circle-fill",
+            "b-icon-circle"
         ]
     });
 

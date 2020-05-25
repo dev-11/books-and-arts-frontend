@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import get_smart_number from "@/utils/parsers/smart_number_parser";
+
 export default {
   name: "rating",
   props: {
@@ -36,13 +38,7 @@ export default {
         return Math.floor(5-(+this.rating));
     },
     smart_number: function() {
-      var num = this.ratings_count;
-        var b = (num).toPrecision(2).split("e"); // get power
-        var k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3); // floor at decimals, ceiling at trillions
-        var c = k < 1 ? num.toFixed(0) : (num / Math.pow(10, k * 3) ).toFixed(1); // divide by power
-        var d = c < 0 ? c : Math.abs(c); // enforce -0 is 0
-        var e = d + ['', 'k', 'm', 'B', 'T'][k]; // append power
-        return e;
+      return get_smart_number(this.ratings_count);
     }
   }
 };
