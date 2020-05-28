@@ -135,8 +135,8 @@ describe("Book.vue", () => {
     Date.now = jest.fn(() => new Date('05-11-2020'));
     const wrapper = shallowMount(Book, options);
 
-    it("formatted_publication_date is 10 day ago", () => {
-        expect(wrapper.vm.formatted_publication_date).toBe("10 days ago");
+    it("formatted_publication_date is two weeks ago", () => {
+        expect(wrapper.vm.formatted_publication_date).toBe("two weeks ago");
     });
 });
 
@@ -146,7 +146,7 @@ describe("Book.vue", () => {
     const wrapper = shallowMount(Book, options);
 
     it("formatted_publication_date is 11 days from now", () => {
-        expect(wrapper.vm.formatted_publication_date).toBe("11 days from now");
+        expect(wrapper.vm.formatted_publication_date).toBe("next week");
     });
 });
 

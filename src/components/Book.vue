@@ -112,7 +112,8 @@
 
 <script>
 import Rating from "./Rating.vue";
-import Favourite from "./Favourite.vue"
+import Favourite from "./Favourite.vue";
+import { get_smart_date } from "@/utils/formatters/smart_date_formatter";
 
 export default {
   name: "Book",
@@ -134,11 +135,7 @@ export default {
     formatted_publication_date: function() {
       let d = this.details.published_at.split("/");
       let date = new Date(+d[2], +d[1] - 1, +d[0]);
-      let now = new Date(Date.now()); // to make it testable
-      let diff = now.getTime() - date.getTime();
-      let diff_in_days = Math.floor(diff / (1000 * 3600 * 24));
-
-      return this.get_smart_date_display(diff_in_days);
+      return get_smart_date(date);
     }
   },
   props: {
@@ -157,35 +154,6 @@ export default {
     },
     switch_publication_date_format() {
       this.show_smart_publication_date = !this.show_smart_publication_date;
-    },
-    get_smart_date_display(days){
-      if(days == 0){
-        return "today"
-      }
-
-      if(days == 1){
-        return 'yesterday'
-      }
-
-      if(days == 2){
-        return 'the day before yesterday'
-      }
-
-      if(days == -1){
-        return 'tomorrow'
-      }
-
-      if(days == -2){
-        return 'the day after tomorrow'
-      }
-
-      let abs_days = Math.abs(days);
-      let day = (abs_days == 1) ? "day" : "days";
-      
-      if (days > 0) {
-        return abs_days + " " + day + " ago";
-      }
-      return abs_days + " " + day + " from now";
     },
     toogle_liked(){
       if (localStorage.getItem(this.details.id)) {
