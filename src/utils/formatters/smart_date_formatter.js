@@ -134,6 +134,91 @@ function get_smart_date(date) {
     return "coming in " + month_sections[m_section] + " " + month_name;
 }
 
+const one_day_in_ms = 86400000;
+
+function factory_method(now){
+    return [
+        new DayBeforeYesterday(now),
+        new Yesterday(now),
+        new Today(now),
+        new Tomorrow(now),
+        new DayAfterTomorrow(now)
+    ]
+}
+
+class DayBeforeYesterday{
+    constructor(reference_date){
+        this.reference_date = reference_date;
+    }
+
+    in_range(date){
+        return this.reference_date.getTime()-(one_day_in_ms*2) === date.getTime();
+    }
+
+    get_range_name(){
+        return smart_date.the_day_before_yesterday;
+    }
+}
+
+class Yesterday{
+    constructor(reference_date){
+        this.reference_date = reference_date;
+    }
+
+    in_range(date){
+        return this.reference_date.getTime()-one_day_in_ms === date.getTime();
+    }
+
+    get_range_name(){
+        return smart_date.yesterday;
+    }
+}
+class Today{
+
+    constructor(reference_date){
+        this.reference_date = reference_date;
+    }
+
+    in_range(date){
+        return this.reference_date.getTime() === date.getTime();
+    }
+
+    get_range_name(){
+        return smart_date.today;
+    }
+}
+
+class Tomorrow{
+
+    constructor(reference_date){
+        this.reference_date = reference_date;
+    }
+
+    in_range(date){
+        return this.reference_date.getTime()+one_day_in_ms === date.getTime();
+    }
+
+    get_range_name(){
+        return smart_date.tomorrow;
+    }
+}
+
+class DayAfterTomorrow{
+
+    constructor(reference_date){
+        this.reference_date = reference_date;
+    }
+
+    in_range(date){
+        return this.reference_date.getTime()+(one_day_in_ms * 2) === date.getTime();
+    }
+
+    get_range_name(){
+        return smart_date.the_day_after_tomorrow;
+    }
+}
+
+
 export {
     get_smart_date
 };
