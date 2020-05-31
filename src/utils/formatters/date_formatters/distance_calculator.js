@@ -12,3 +12,11 @@ export function days_between_dates(date_1, date_2){
     let diff_in_days = Math.floor(diff / (1000 * 3600 * 24));
     return diff_in_days;
 }
+
+export function get_sunday_of_week(date, week_shift){
+    let sunday = new Date();
+    sunday.setDate(date.getDate() + (7 - date.getDay()) % 7);
+    sunday.setDate(sunday.getDate() + (7 * week_shift));
+    sunday.setHours(0,0,0,0);
+    return sunday;
+}

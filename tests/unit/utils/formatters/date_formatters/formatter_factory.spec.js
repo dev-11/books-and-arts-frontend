@@ -208,7 +208,7 @@ describe("formatter factory tests", () =>{
 
     it("one formatter for ThisWeekFuture", () => {
         let date_1 = new Date("05-04-2020")
-        let date_2 = new Date("05-10-2020")
+        let date_2 = new Date("05-08-2020")
         let formatters = get_formatters(date_1, date_2)
         let formatter = formatters.filter(item => item.in_range());
         expect(formatter.length).toBe(1);

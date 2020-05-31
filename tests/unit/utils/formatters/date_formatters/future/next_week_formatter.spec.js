@@ -14,13 +14,13 @@ describe("NextWeek tests", () => {
     });
 
     it("test for next week (middle of week)", () => {
-        let next_week = new NextWeek(new Date("05-01-2020"), new Date("05-04-2020"));
-        expect(next_week.in_range()).toBeTruthy
+        let next_week = new NextWeek(new Date("05-04-2020"), new Date("05-09-2020"));
+        expect(next_week.in_range()).toBeFalsy();
     });
 
     it("test for next week (Sunday)", () => {
         let next_week = new NextWeek(new Date('05-05-2020'), new Date('05-17-2020'));
-        expect(next_week.in_range()).toBeTruthy
+        expect(next_week.in_range()).toBeTruthy();
     });
 
     it("test for next week false 2", () => {

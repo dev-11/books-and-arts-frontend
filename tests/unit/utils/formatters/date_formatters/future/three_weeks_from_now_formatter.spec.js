@@ -3,7 +3,7 @@ import { ThreeWeeksFromNow } from "@/utils/formatters/date_formatters/future/thr
 
 describe("TwoWeeksFromNow tests", () => {
     it("test for three_weeks_from_now false", () => {
-        let three_weeks_from_now = new ThreeWeeksFromNow(new Date('05-05-2020'), new Date('05-25-2020'));
+        let three_weeks_from_now = new ThreeWeeksFromNow(new Date('05-01-2020'), new Date('05-25-2020'));
         expect(three_weeks_from_now.in_range()).toBeFalsy();
     });
 
