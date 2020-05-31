@@ -15,6 +15,7 @@ export class NextMonth extends Future {
         let distance = days_between_dates(this.reference_date,this.date);
         let dsm = days_since_monday(this.reference_date);
         return distance > dsm + (3 * week_length)
+            && distance <= 31
             && this.date.getMonth() === this.reference_date.getMonth()+1;
     }
 

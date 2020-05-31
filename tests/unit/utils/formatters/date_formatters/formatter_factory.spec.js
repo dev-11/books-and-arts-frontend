@@ -28,6 +28,9 @@ import { YearsFromNow } from "@/utils/formatters/date_formatters/future/years_fr
 
 
 describe("formatter factory tests", () =>{
+
+    // present
+
     it("one formatter for today", () => {
         let date = new Date("05-01-2020")
         let formatters = get_formatters(date, date)
@@ -158,4 +161,89 @@ describe("formatter factory tests", () =>{
         expect(formatter[0]).toBeInstanceOf(DayAfterTomorrow);
     });
     
+    it("one formatter for FutureMonth", () => {
+        let date_1 = new Date("05-01-2020")
+        let date_2 = new Date("07-03-2020")
+        let formatters = get_formatters(date_1, date_2)
+        let formatter = formatters.filter(item => item.in_range());
+        expect(formatter.length).toBe(1);
+        expect(formatter[0]).toBeInstanceOf(FutureMonth);
+    });
+
+    it("one formatter for NextMonth", () => {
+        let date_1 = new Date("05-01-2020")
+        let date_2 = new Date("06-01-2020")
+        let formatters = get_formatters(date_1, date_2)
+        let formatter = formatters.filter(item => item.in_range());
+        expect(formatter.length).toBe(1);
+        expect(formatter[0]).toBeInstanceOf(NextMonth);
+    });
+
+    it("one formatter for NextWeek", () => {
+        let date_1 = new Date("05-01-2020")
+        let date_2 = new Date("05-06-2020")
+        let formatters = get_formatters(date_1, date_2)
+        let formatter = formatters.filter(item => item.in_range());
+        expect(formatter.length).toBe(1);
+        expect(formatter[0]).toBeInstanceOf(NextWeek);
+    });
+
+    it("one formatter for TwoWeeksFromNow", () => {
+        let date_1 = new Date("05-01-2020")
+        let date_2 = new Date("05-13-2020")
+        let formatters = get_formatters(date_1, date_2)
+        let formatter = formatters.filter(item => item.in_range());
+        expect(formatter.length).toBe(1);
+        expect(formatter[0]).toBeInstanceOf(TwoWeeksFromNow);
+    });
+
+    it("one formatter for ThreeWeeksFromNow", () => {
+        let date_1 = new Date("05-01-2020")
+        let date_2 = new Date("05-20-2020")
+        let formatters = get_formatters(date_1, date_2)
+        let formatter = formatters.filter(item => item.in_range());
+        expect(formatter.length).toBe(1);
+        expect(formatter[0]).toBeInstanceOf(ThreeWeeksFromNow);
+    });
+
+    it("one formatter for ThisWeekFuture", () => {
+        let date_1 = new Date("05-04-2020")
+        let date_2 = new Date("05-10-2020")
+        let formatters = get_formatters(date_1, date_2)
+        let formatter = formatters.filter(item => item.in_range());
+        expect(formatter.length).toBe(1);
+        expect(formatter[0]).toBeInstanceOf(ThisWeekFuture);
+    });
+
+    it("one formatter for ThisMonthFuture", () => {
+        let date_1 = new Date("05-01-2020")
+        let date_2 = new Date("05-30-2020")
+        let formatters = get_formatters(date_1, date_2)
+        let formatter = formatters.filter(item => item.in_range());
+        expect(formatter.length).toBe(1);
+        expect(formatter[0]).toBeInstanceOf(ThisMonthFuture);
+    });
+
+    it("one formatter for NextYear", () => {
+        let date_1 = new Date("05-01-2020")
+        let date_2 = new Date("05-30-2021")
+        let formatters = get_formatters(date_1, date_2)
+        let formatter = formatters.filter(item => item.in_range());
+
+        console.log(formatter[0]);
+        console.log(formatter[1]);
+
+        expect(formatter.length).toBe(1);
+        expect(formatter[0]).toBeInstanceOf(NextYear);
+    });
+
+    it("one formatter for YearsFromNow", () => {
+        let date_1 = new Date("05-01-2020")
+        let date_2 = new Date("06-30-2022")
+        let formatters = get_formatters(date_1, date_2)
+        let formatter = formatters.filter(item => item.in_range());
+        expect(formatter.length).toBe(1);
+        expect(formatter[0]).toBeInstanceOf(YearsFromNow);
+    });
+
 });
