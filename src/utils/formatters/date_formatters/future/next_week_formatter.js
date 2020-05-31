@@ -1,4 +1,4 @@
-import { get_sunday_of_week, days_between_dates} from "../distance_calculator";
+import { get_sunday_of_week } from "../distance_calculator";
 import { Future } from "./future";
 
 
