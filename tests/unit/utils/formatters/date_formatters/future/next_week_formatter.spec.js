@@ -1,0 +1,25 @@
+import { NextWeek } from "@/utils/formatters/date_formatters/future/next_week_formatter.js";
+
+
+describe("NextWeek tests", () => {
+
+    it("test for next week false", () => {
+        let next_week = new NextWeek(new Date('05-05-2020'));
+        expect(next_week.in_range(new Date('05-10-2020'))).toBeFalsy();
+    });
+
+    it("test for next week (Monday)", () => {
+        let next_week = new NextWeek(new Date('05-04-2020'));
+        expect(next_week.in_range(new Date('05-11-2020'))).toBeTruthy();
+    });
+
+    it("test for next week (Sunday)", () => {
+        let next_week = new NextWeek(new Date('05-05-2020'));
+        expect(next_week.in_range(new Date('05-17-2020'))).toBeTruthy
+    });
+
+    it("test for next week false 2", () => {
+        let next_week = new NextWeek(new Date('05-05-2020'));
+        expect(next_week.in_range(new Date('05-18-2020'))).toBeFalsy();
+    });
+});

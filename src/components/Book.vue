@@ -113,7 +113,7 @@
 <script>
 import Rating from "./Rating.vue";
 import Favourite from "./Favourite.vue";
-import { get_smart_date } from "@/utils/formatters/smart_date_formatter";
+import { get_smart_date } from "@/utils/formatters/date_formatters/smart_date_formatter";
 
 export default {
   name: "Book",
