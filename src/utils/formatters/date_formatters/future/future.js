@@ -4,4 +4,4 @@ export class Future
     {
         return "future";
     }
-};
+}
