@@ -1,4 +1,4 @@
-import {days_since_monday, days_between_dates} from "../distance_calculator";
+import { days_til_sunday, days_between_dates } from "../distance_calculator";
 import { Future } from "./future";
 
 
@@ -12,7 +12,7 @@ export class ThisWeekFuture extends Future {
 
     in_range(){
         let distance = days_between_dates(this.reference_date, this.date);
-        return distance > 2 && distance < days_since_monday(this.date);
+        return distance > 2 && distance < days_til_sunday(this.date);
     }
 
     get_range_name(){

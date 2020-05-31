@@ -1,3 +1,4 @@
+import { days_between_dates } from "../distance_calculator";
 import { mlist } from "../constants";
 import { Future } from "./future";
 
@@ -11,7 +12,8 @@ export class FutureMonth extends Future {
     }
 
     in_range(){
-        return this.date.getMonth() > this.reference_date.getMonth()+1;
+        let distance = days_between_dates(this.reference_date, this.date);
+        return distance < 365 && distance > 0 && this.date.getMonth() > this.reference_date.getMonth()+1;
     }
 
     get_range_name(){

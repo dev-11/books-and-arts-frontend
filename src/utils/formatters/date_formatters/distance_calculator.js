@@ -10,5 +10,5 @@ export function days_til_sunday(date){
 export function days_between_dates(date_1, date_2){
     let diff = date_2.getTime() - date_1.getTime();
     let diff_in_days = Math.floor(diff / (1000 * 3600 * 24));
-    return Math.abs(diff_in_days);
+    return diff_in_days;
 }

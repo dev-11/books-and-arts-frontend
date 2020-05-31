@@ -11,4 +11,9 @@ describe("ThisWeekFuture tests", () => {
         let this_week_future = new ThisWeekFuture(new Date('05-05-2020'), new Date('05-11-2020'));
         expect(this_week_future.in_range()).toBeFalsy();
     });
+
+    it("in_range returns false for this week 2+ days gap 2", () => {
+        let this_week_future = new ThisWeekFuture(new Date('05-01-2020'), new Date('04-26-2020'));
+        expect(this_week_future.in_range()).toBeFalsy();
+    });
 });

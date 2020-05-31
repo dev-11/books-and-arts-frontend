@@ -14,6 +14,6 @@ export class PastMonths extends Past {
     }
 
     get_range_name(){
-        return "in " + mlist[this.date.getMonth()];
+        return mlist[this.date.getMonth()];
     }
 }

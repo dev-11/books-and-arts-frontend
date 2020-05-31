@@ -10,7 +10,7 @@ export class LastYear extends Past {
     }
 
     in_range(){
-        let distance = days_between_dates(this.reference_date, this.date);
+        let distance = days_between_dates(this.date, this.reference_date);
         return this.reference_date.getFullYear()-1 === this.date.getFullYear() && distance > 365/2;    }
 
     get_range_name(){
