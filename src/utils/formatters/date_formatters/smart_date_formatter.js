@@ -10,10 +10,10 @@ function get_smart_date(date) {
 
     let formatter = formatters.find(item => item.in_range());
     if(formatter.get_type() === "past"){
-        prefix = "came out in"
+        prefix = "came out "
     }
     else if(formatter.get_type() === "future"){
-        prefix = "coming in"
+        prefix = "coming"
     }
     return formatter ? prefix + " "+formatter.get_range_name() : date;
 }

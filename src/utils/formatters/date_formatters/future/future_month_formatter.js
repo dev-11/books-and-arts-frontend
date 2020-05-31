@@ -15,6 +15,6 @@ export class FutureMonth extends Future {
     }
 
     get_range_name(){
-        return mlist[this.date.getMonth()];
+        return "in " + mlist[this.date.getMonth()];
     }
 }
