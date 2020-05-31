@@ -3,20 +3,8 @@ import { get_formatters } from "./formatters_factory";
 
 function get_smart_date(date) {
     let now = new Date(Date.now()); // to make it testable
-
+    now.setHours(0,0,0,0);
     let formatters = get_formatters(now, date);
-
-    let count = 0;
-    formatters.forEach(f => {
-        if(f.in_range()){
-            count++;
-        }
-    });
-
-    if(count > 2){
-        console.log(count);
-        console.log("--------");    
-    }
 
     let prefix = "";
 

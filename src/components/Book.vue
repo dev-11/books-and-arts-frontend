@@ -135,6 +135,7 @@ export default {
     formatted_publication_date: function() {
       let d = this.details.published_at.split("/");
       let date = new Date(+d[2], +d[1] - 1, +d[0]);
+      date.setHours(0,0,0,0);
       return get_smart_date(date);
     }
   },

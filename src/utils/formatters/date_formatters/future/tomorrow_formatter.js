@@ -10,8 +10,8 @@ export class Tomorrow extends Future {
         this.date = date;
     }
 
-    in_range(){
-        return this.reference_date.getTime()+one_day_in_ms === this.date.getTime();
+    in_range() {
+        return this.reference_date.getTime() + one_day_in_ms === this.date.getTime();
     }
 
     get_range_name(){
