@@ -3,14 +3,15 @@ import { week_length } from "../constants";
 
 export class ThisMonthFuture{
 
-    constructor(reference_date){
+    constructor(reference_date, date){
         this.reference_date = reference_date;
+        this.date = date;
     }
 
-    in_range(date){
-        let distance = days_between_dates(this.reference_date, date);
-        return distance > days_til_sunday(date) + (3 * week_length)
-            && date.getMonth() === this.reference_date.getMonth()
+    in_range(){
+        let distance = days_between_dates(this.reference_date, this.date);
+        return distance > days_til_sunday(this.date) + (3 * week_length)
+            && this.date.getMonth() === this.reference_date.getMonth()
     }
 
     get_range_name(){

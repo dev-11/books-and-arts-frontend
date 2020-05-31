@@ -3,12 +3,13 @@ import { week_length } from "../constants";
 
 
 export class TwoWeeksAgo{
-    constructor(reference_date){
+    constructor(reference_date, date){
         this.reference_date = reference_date;
+        this.date = date;
     }
 
-    in_range(date){
-        let distance = days_between_dates(date, this.reference_date);
+    in_range(){
+        let distance = days_between_dates(this.date, this.reference_date);
         let dsm = days_since_monday(this.reference_date);
         return distance >= dsm + week_length && distance <= dsm + (2 * week_length);
     }

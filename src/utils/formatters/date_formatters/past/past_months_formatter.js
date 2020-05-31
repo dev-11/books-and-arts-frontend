@@ -1,10 +1,11 @@
 export class PastMonths{
-    constructor(reference_date){
+    constructor(reference_date, date){
         this.reference_date = reference_date;
+        this.date = date;
     }
 
-    in_range(date){
-        return date.getMonth()  <  this.reference_date.getMonth()-1;
+    in_range(){
+        return this.date.getMonth()  <  this.reference_date.getMonth()-1;
     }
 
     get_range_name(){

@@ -2,13 +2,14 @@ import {days_between_dates} from "../distance_calculator";
 
 
 export class LastYear{
-    constructor(reference_date){
+    constructor(reference_date, date){
         this.reference_date = reference_date;
+        this.date = date;
     }
 
-    in_range(date){
-        let distance = days_between_dates(this.reference_date, date);
-        return this.reference_date.getFullYear()-1 === date.getFullYear() && distance > 365/2;    }
+    in_range(){
+        let distance = days_between_dates(this.reference_date, this.date);
+        return this.reference_date.getFullYear()-1 === this.date.getFullYear() && distance > 365/2;    }
 
     get_range_name(){
         return "";
