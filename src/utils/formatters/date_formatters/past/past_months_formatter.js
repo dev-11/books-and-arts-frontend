@@ -12,7 +12,7 @@ export class PastMonths extends Past {
 
     in_range(){
         let distance = days_between_dates(this.date, this.reference_date);
-        return distance < 365 && distance > 0 && this.date.getMonth() > this.reference_date.getMonth()+1;
+        return distance < 365 && distance > 0 && this.date.getMonth() < this.reference_date.getMonth()-1;
     }
 
     get_range_name(){
