@@ -1,3 +1,4 @@
+import { days_between_dates } from "../distance_calculator";
 import { mlist } from "../constants";
 import { Past } from "./past";
 
@@ -10,7 +11,8 @@ export class PastMonths extends Past {
     }
 
     in_range(){
-        return this.date.getMonth()  <  this.reference_date.getMonth()-1;
+        let distance = days_between_dates(this.date, this.reference_date);
+        return distance < 365 && distance > 0 && this.date.getMonth() > this.reference_date.getMonth()+1;
     }
 
     get_range_name(){
