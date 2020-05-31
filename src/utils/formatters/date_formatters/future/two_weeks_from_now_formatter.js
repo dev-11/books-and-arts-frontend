@@ -18,6 +18,6 @@ export class TwoWeeksFromNow extends Future {
     }
 
     get_range_name(){
-        return "two weeks from now";
+        return "in two weeks";
     }
 }
