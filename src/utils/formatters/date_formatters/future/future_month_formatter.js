@@ -1,6 +1,11 @@
-export class FutureMonth{
+import { mlist } from "../constants";
+import { Future } from "./future";
+
+
+export class FutureMonth extends Future {
 
     constructor(reference_date, date){
+        super();
         this.reference_date = reference_date;
         this.date = date;
     }
@@ -10,6 +15,6 @@ export class FutureMonth{
     }
 
     get_range_name(){
-        return '';
+        return mlist[this.date.getMonth()];
     }
 }

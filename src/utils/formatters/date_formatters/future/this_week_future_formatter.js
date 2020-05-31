@@ -1,9 +1,11 @@
 import {days_since_monday, days_between_dates} from "../distance_calculator";
+import { Future } from "./future";
 
 
-export class ThisWeekFuture {
+export class ThisWeekFuture extends Future {
 
     constructor(reference_date, date){
+        super();
         this.reference_date = reference_date;
         this.date = date;
     }

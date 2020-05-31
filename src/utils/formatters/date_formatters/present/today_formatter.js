@@ -1,9 +1,11 @@
 import { smart_date } from "../constants";
+import { Present } from "./present";
 
 
-export class Today {
+export class Today extends Present {
 
     constructor(reference_date, date){
+        super();
         this.reference_date = reference_date;
         this.date = date;
     }

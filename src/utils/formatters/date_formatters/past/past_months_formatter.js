@@ -1,5 +1,10 @@
-export class PastMonths{
+import { mlist } from "../constants";
+import { Past } from "./past";
+
+
+export class PastMonths extends Past {
     constructor(reference_date, date){
+        super();
         this.reference_date = reference_date;
         this.date = date;
     }
@@ -9,6 +14,6 @@ export class PastMonths{
     }
 
     get_range_name(){
-        return "";
+        return mlist[this.date.getMonth()];
     }
 }

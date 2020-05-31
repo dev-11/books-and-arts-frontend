@@ -1,9 +1,12 @@
 import { days_til_sunday, days_between_dates } from "../distance_calculator";
 import { week_length } from "../constants";
+import { Future } from "./future";
 
-export class ThisMonthFuture{
+
+export class ThisMonthFuture extends Future {
 
     constructor(reference_date, date){
+        super();
         this.reference_date = reference_date;
         this.date = date;
     }
@@ -15,6 +18,6 @@ export class ThisMonthFuture{
     }
 
     get_range_name(){
-        return '';
+        return "this month";
     }
 }

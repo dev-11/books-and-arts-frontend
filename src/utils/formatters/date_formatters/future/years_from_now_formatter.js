@@ -1,6 +1,10 @@
-export class YearsFromNow{
+import { Future } from "./future";
+
+
+export class YearsFromNow extends Future {
 
     constructor(reference_date, date){
+        super();
         this.reference_date = reference_date;
         this.date = date;
     }
@@ -10,6 +14,6 @@ export class YearsFromNow{
     }
 
     get_range_name(){
-        return '';
+        return (this.date.getFullYear() - this.reference_date.getFullYear()) + " years from now";
     }
 }

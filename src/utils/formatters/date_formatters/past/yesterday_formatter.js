@@ -1,8 +1,10 @@
 import { smart_date, one_day_in_ms } from "../constants";
+import { Past } from "./past";
 
 
-export class Yesterday{
+export class Yesterday extends Past {
     constructor(reference_date, date){
+        super();
         this.reference_date = reference_date;
         this.date = date;
     }

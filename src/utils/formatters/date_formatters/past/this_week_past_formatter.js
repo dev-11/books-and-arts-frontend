@@ -1,8 +1,10 @@
 import {days_since_monday, days_between_dates} from "../distance_calculator";
+import { Past } from "./past";
 
 
-export class ThisWeekPast{
+export class ThisWeekPast extends Past {
     constructor(reference_date, date){
+        super();
         this.reference_date = reference_date;
         this.date = date;
     }
@@ -13,6 +15,6 @@ export class ThisWeekPast{
     }
 
     get_range_name(){
-        return "";
+        return "this week";
     }
 }
