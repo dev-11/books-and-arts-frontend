@@ -230,9 +230,6 @@ describe("formatter factory tests", () =>{
         let formatters = get_formatters(date_1, date_2)
         let formatter = formatters.filter(item => item.in_range());
 
-        console.log(formatter[0]);
-        console.log(formatter[1]);
-
         expect(formatter.length).toBe(1);
         expect(formatter[0]).toBeInstanceOf(NextYear);
     });
