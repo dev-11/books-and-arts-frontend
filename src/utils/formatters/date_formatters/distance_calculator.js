@@ -14,9 +14,9 @@ export function days_between_dates(date_1, date_2){
 }
 
 export function get_sunday_of_week(date, week_shift){
-    let sunday = new Date();
+    let sunday = new Date(date);
+    sunday.setHours(0,0,0,0);
     sunday.setDate(date.getDate() + (7 - date.getDay()) % 7);
     sunday.setDate(sunday.getDate() + (7 * week_shift));
-    sunday.setHours(0,0,0,0);
     return sunday;
 }

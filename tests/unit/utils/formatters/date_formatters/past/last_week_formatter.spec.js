@@ -15,6 +15,11 @@ describe("LastWeek tests", () => {
 
     it("test for last week (Sunday)", () => {
         let last_week = new LastWeek(new Date('05-20-2020'), new Date('05-17-2020'));
-        expect(last_week.in_range()).toBeTruthy
+        expect(last_week.in_range()).toBeTruthy();
+    });
+
+    it("test for last week, first day of month", () => {
+        let last_week = new LastWeek(new Date('06-04-2020'), new Date('05-27-2020'));
+        expect(last_week.in_range()).toBeTruthy();
     });
 });

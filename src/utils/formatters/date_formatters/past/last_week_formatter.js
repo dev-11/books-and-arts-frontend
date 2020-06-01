@@ -1,5 +1,4 @@
-import {days_since_monday, days_between_dates} from "../distance_calculator";
-import { week_length } from "../constants";
+import { get_sunday_of_week, days_between_dates } from "../distance_calculator";
 import { Past } from "./past";
 
 
@@ -12,8 +11,9 @@ export class LastWeek extends Past {
 
     in_range(){
         let distance = days_between_dates(this.date, this.reference_date);
-        let dsm = days_since_monday(this.reference_date);
-        return distance >= dsm && distance <= dsm + week_length;
+        let sunday_1 = get_sunday_of_week(this.reference_date, -1);
+        let sunday_2 = get_sunday_of_week(this.date, 0);
+        return sunday_1.getTime() === sunday_2.getTime() && distance > 2;
     }
 
     get_range_name(){
