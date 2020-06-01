@@ -6,11 +6,11 @@ function get_smart_date(date) {
     now.setHours(0,0,0,0);
     let formatters = get_formatters(now, date);
 
-    let prefix = "";
+    let prefix = "out";
 
     let formatter = formatters.find(item => item.in_range());
     if(formatter.get_type() === "past"){
-        prefix = "came out "
+        prefix = "came out"
     }
     else if(formatter.get_type() === "future"){
         prefix = "coming"
