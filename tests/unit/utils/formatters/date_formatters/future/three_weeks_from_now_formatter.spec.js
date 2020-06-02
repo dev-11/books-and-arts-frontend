@@ -21,4 +21,9 @@ describe("TwoWeeksFromNow tests", () => {
         let three_weeks_from_now = new ThreeWeeksFromNow(new Date("05-05-2020"), new Date("06-01-2020"));
         expect(three_weeks_from_now.in_range()).toBeFalsy();
     });
+
+    it("get_range_name() returns correct value", () => {
+        let instance = new ThreeWeeksFromNow(new Date(), new Date());
+        expect(instance.get_range_name()).toBe("in three weeks");
+    });
 });

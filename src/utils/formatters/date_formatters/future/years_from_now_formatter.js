@@ -14,6 +14,6 @@ export class YearsFromNow extends Future {
     }
 
     get_range_name(){
-        return "int " + (this.date.getFullYear() - this.reference_date.getFullYear()) + " years";
+        return "in " + (this.date.getFullYear() - this.reference_date.getFullYear()) + " years";
     }
 }

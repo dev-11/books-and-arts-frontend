@@ -21,4 +21,9 @@ describe("ThisWeekFuture tests", () => {
         let this_week_future = new ThisWeekFuture(new Date("05-01-2020"), new Date("04-26-2020"));
         expect(this_week_future.in_range()).toBeFalsy();
     });
+
+    it("get_range_name() returns correct value", () => {
+        let instance = new ThisWeekFuture(new Date(), new Date());
+        expect(instance.get_range_name()).toBe("this week");
+    });
 });

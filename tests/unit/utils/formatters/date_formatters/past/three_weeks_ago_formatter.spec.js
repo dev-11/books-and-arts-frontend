@@ -17,4 +17,9 @@ describe("ThreeWeeksAgo tests", () => {
         let three_weeks_ago = new ThreeWeeksAgo(new Date("05-29-2020"), new Date("05-10-2020"));
         expect(three_weeks_ago.in_range()).toBeTruthy();
     });
+
+    it("get_range_name() returns correct value", () => {
+        let instance = new ThreeWeeksAgo(new Date(""), new Date(""));
+        expect(instance.get_range_name()).toBe("three weeks ago");
+    });
 });

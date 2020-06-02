@@ -27,4 +27,9 @@ describe("NextWeek tests", () => {
         let next_week = new NextWeek(new Date("05-05-2020"), new Date("05-18-2020"));
         expect(next_week.in_range()).toBeFalsy();
     });
+
+    it("get_range_name() returns correct value", () => {
+        let instance = new NextWeek(new Date(), new Date());
+        expect(instance.get_range_name()).toBe("next week");
+    });
 });

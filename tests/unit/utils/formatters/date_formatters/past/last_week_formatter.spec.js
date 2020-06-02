@@ -22,4 +22,9 @@ describe("LastWeek tests", () => {
         let last_week = new LastWeek(new Date("06-04-2020"), new Date("05-27-2020"));
         expect(last_week.in_range()).toBeTruthy();
     });
+
+    it("get_range_name() returns correct value", () => {
+        let instance = new LastWeek(new Date(), new Date());
+        expect(instance.get_range_name()).toBe("last week");
+    });
 });

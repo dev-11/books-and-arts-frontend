@@ -7,4 +7,9 @@ describe("NextMonth tests", () => {
         let next_month = new NextMonth(new Date("05-01-2020"), new Date("06-01-2020"));
         expect(next_month.in_range()).toBeTruthy();
     });
+
+    it("get_range_name() returns correct value", () => {
+        let instance = new NextMonth(new Date(), new Date());
+        expect(instance.get_range_name()).toBe("next month");
+    });
 });

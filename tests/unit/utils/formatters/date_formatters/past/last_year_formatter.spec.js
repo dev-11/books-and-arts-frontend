@@ -6,4 +6,9 @@ describe("Last year tests", () => {
         let last_year = new LastYear(new Date("05-01-2021"), new Date("01-01-2020"));
         expect(last_year.in_range()).toBeTruthy();
     });
+
+    it("get_range_name() returns correct value", () => {
+        let instance = new LastYear(new Date(), new Date());
+        expect(instance.get_range_name()).toBe("last year");
+    });
 });

@@ -11,4 +11,9 @@ describe("ThisWeekPast tests", () => {
         let this_week_past = new ThisWeekPast(new Date("05-05-2020"), new Date("05-11-2020"));
         expect(this_week_past.in_range()).toBeFalsy();
     });
+
+    it("get_range_name() returns correct value", () => {
+        let instance = new ThisWeekPast(new Date(""), new Date(""));
+        expect(instance.get_range_name()).toBe("this week");
+    });
 });
