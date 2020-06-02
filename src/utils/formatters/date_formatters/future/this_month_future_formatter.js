@@ -17,7 +17,7 @@ export class ThisMonthFuture extends Future {
         let distance = days_between_dates(sunday_1, sunday_2);
         return distance > 3 * week_length
             && this.date.getFullYear() === this.reference_date.getFullYear()
-            && this.date.getMonth() === this.reference_date.getMonth()
+            && this.date.getMonth() === this.reference_date.getMonth();
     }
 
     get_range_name(){

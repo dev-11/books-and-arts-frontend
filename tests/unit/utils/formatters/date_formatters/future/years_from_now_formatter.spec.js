@@ -3,7 +3,7 @@ import { YearsFromNow } from "@/utils/formatters/date_formatters/future/years_fr
 
 describe("Years from now tests", () => {
     it("Years from now in range true", () => {
-        let years_from_now = new YearsFromNow(new Date('05-01-2020'), new Date('01-01-2022'));
+        let years_from_now = new YearsFromNow(new Date("05-01-2020"), new Date("01-01-2022"));
         expect(years_from_now.in_range()).toBeTruthy();
     });
 });

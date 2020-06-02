@@ -32,7 +32,7 @@ describe("formatter factory tests", () => {
     // present
 
     it("one formatter for today", () => {
-        let date = new Date("05-01-2020")
+        let date = new Date("05-01-2020");
         let formatters = get_formatters(date, date);
         let formatter = formatters.filter((item) => item.in_range());
         expect(formatter.length).toBe(1);
@@ -125,7 +125,7 @@ describe("formatter factory tests", () => {
     it("one formatter for last year", () => {
         let date_1 = new Date("07-30-2020");
         let date_2 = new Date("12-31-2019");
-        let formatters = get_formatters(date_1, date_2)
+        let formatters = get_formatters(date_1, date_2);
         let formatter = formatters.filter((item) => item.in_range());
         expect(formatter.length).toBe(1);
         expect(formatter[0]).toBeInstanceOf(LastYear);

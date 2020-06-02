@@ -14,7 +14,7 @@ describe("TwoWeeksFromNow tests", () => {
 
     it("test for two_weeks_from_now (Sunday)", () => {
         let two_weeks_from_now = new TwoWeeksFromNow(new Date("05-05-2020"), new Date("05-24-2020"));
-        expect(two_weeks_from_now.in_range()).toBeTruthy
+        expect(two_weeks_from_now.in_range()).toBeTruthy();
     });
 
     it("test for two_weeks_from_now false 2", () => {

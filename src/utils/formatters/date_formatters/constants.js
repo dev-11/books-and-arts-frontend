@@ -27,6 +27,6 @@ export const smart_date = {
     the_day_before_yesterday: "the day before yesterday",
     tomorrow: "tomorrow",
     the_day_after_tomorrow: "the day after tomorrow"
-}
+};
 
 export const week_length = 7;

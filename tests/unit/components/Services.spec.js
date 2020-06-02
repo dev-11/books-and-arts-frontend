@@ -1,6 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
 import Services from "@/components/Services.vue";
-import LocalStorageMock from "../../mocks/LocalStorage.mock"
+import LocalStorageMock from "../../mocks/LocalStorage.mock";
 
 
 describe("Services.vue", () => {
