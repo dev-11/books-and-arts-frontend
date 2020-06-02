@@ -8,7 +8,7 @@ describe("DayBeforeYesterday tests", () => {
     });
 
     it("get_range_name() returns correct value", () => {
-        let instance = new DayBeforeYesterday(new Date(""), new Date(""));
+        let instance = new DayBeforeYesterday(new Date(), new Date());
         expect(instance.get_range_name()).toBe("the day before yesterday");
     });
 });

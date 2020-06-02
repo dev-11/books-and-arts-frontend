@@ -13,7 +13,7 @@ describe("ThisWeekPast tests", () => {
     });
 
     it("get_range_name() returns correct value", () => {
-        let instance = new ThisWeekPast(new Date(""), new Date(""));
+        let instance = new ThisWeekPast(new Date(), new Date());
         expect(instance.get_range_name()).toBe("this week");
     });
 });

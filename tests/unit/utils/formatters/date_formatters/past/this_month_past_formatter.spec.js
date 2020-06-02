@@ -13,7 +13,7 @@ describe("ThisMonthPast tests", () => {
     });
 
     it("get_range_name() returns correct value", () => {
-        let instance = new ThisMonthPast(new Date(""), new Date(""));
+        let instance = new ThisMonthPast(new Date(), new Date());
         expect(instance.get_range_name()).toBe("this month");
     });
 });

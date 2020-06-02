@@ -19,7 +19,7 @@ describe("ThreeWeeksAgo tests", () => {
     });
 
     it("get_range_name() returns correct value", () => {
-        let instance = new ThreeWeeksAgo(new Date(""), new Date(""));
+        let instance = new ThreeWeeksAgo(new Date(), new Date());
         expect(instance.get_range_name()).toBe("three weeks ago");
     });
 });
