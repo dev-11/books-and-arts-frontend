@@ -3,7 +3,7 @@ import { Yesterday } from "@/utils/formatters/date_formatters/past/yesterday_for
 
 describe("yesterday tests", () => {
     it("in_range returns true for yesterday", () => {
-        let yesterday = new Yesterday(new Date('05-02-2020'), new Date('05-01-2020'));
+        let yesterday = new Yesterday(new Date("05-02-2020"), new Date("05-01-2020"));
         expect(yesterday.in_range()).toBeTruthy();
     });
 });

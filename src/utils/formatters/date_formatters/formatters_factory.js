@@ -50,5 +50,5 @@ export function get_formatters(now, date) {
         new FutureMonth(now, date),
         new NextYear(now, date),
         new YearsFromNow(now, date),
-    ]
+    ];
 }
