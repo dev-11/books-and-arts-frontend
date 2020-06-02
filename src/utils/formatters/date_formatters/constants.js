@@ -19,7 +19,7 @@ export const month_sections = [
     "early",
     "mid",
     "late"
-]
+];
 
 export const smart_date = {
     today: "today",

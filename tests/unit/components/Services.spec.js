@@ -133,11 +133,11 @@ describe("Services.vue", () => {
     it("show_favs_only flag is removed from local storage", () => {
         global.localStorage = LocalStorageMock;
 
-        expect(localStorage.getItem('show_favs_only')).toBeFalsy();
+        expect(localStorage.getItem("show_favs_only")).toBeFalsy();
 
         wrapper.vm.udpate_local_storage("show_favs_only");
 
-        expect(localStorage.getItem('show_favs_only')).toBeTruthy();
+        expect(localStorage.getItem("show_favs_only")).toBeTruthy();
 
     });
 
