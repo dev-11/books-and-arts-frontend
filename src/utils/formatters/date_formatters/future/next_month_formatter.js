@@ -8,7 +8,7 @@ export class NextMonth extends Future {
     constructor(reference_date, date){
         super();
         this.reference_date = reference_date;
-        this.date = date
+        this.date = date;
     }
 
     in_range(){

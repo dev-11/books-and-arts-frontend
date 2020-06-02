@@ -1,7 +1,6 @@
 export class Future
 {
-    get_type()
-    {
+    get_type() {
         return "future";
     }
 }

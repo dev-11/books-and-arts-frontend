@@ -15,6 +15,6 @@ describe("TwoWeeksAgo tests", () => {
 
     it("test for last week (Sunday)", () => {
         let two_weeks_ago = new TwoWeeksAgo(new Date("05-20-2020"), new Date("05-10-2020"));
-        expect(two_weeks_ago.in_range()).toBeTruthy
+        expect(two_weeks_ago.in_range()).toBeTruthy();
     });
 });

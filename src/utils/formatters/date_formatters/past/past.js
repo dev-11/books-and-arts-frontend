@@ -1,7 +1,6 @@
 export class Past
 {
-    get_type()
-    {
+    get_type() {
         return "past";
     }
 }

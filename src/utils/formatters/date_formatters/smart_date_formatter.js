@@ -8,12 +8,12 @@ function get_smart_date(date) {
 
     let prefix = "out";
 
-    let formatter = formatters.find(item => item.in_range());
+    let formatter = formatters.find((item) => item.in_range());
     if(formatter.get_type() === "past"){
-        prefix = "came out"
+        prefix = "came out";
     }
     else if(formatter.get_type() === "future"){
-        prefix = "coming"
+        prefix = "coming";
     }
     return formatter ? prefix + " "+formatter.get_range_name() : date;
 }
