@@ -7,6 +7,11 @@ describe("ThisWeekPast tests", () => {
         expect(this_week_past.in_range()).toBeTruthy();
     });
 
+    it("in_range returns true for this week past 2+ days gap, test 2", () => {
+        let this_week_past = new ThisWeekPast(new Date("06-04-2020"), new Date("06-01-2020"));
+        expect(this_week_past.in_range()).toBeTruthy();
+    });
+
     it("in_range returns false for this week past 2+ days gap", () => {
         let this_week_past = new ThisWeekPast(new Date("05-05-2020"), new Date("05-11-2020"));
         expect(this_week_past.in_range()).toBeFalsy();

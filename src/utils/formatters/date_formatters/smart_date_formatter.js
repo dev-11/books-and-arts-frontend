@@ -6,16 +6,22 @@ function get_smart_date(date) {
     now.setHours(0,0,0,0);
     let formatters = get_formatters(now, date);
 
-    let prefix = "out";
-
     let formatter = formatters.find((item) => item.in_range());
+    if(formatter === undefined){
+        console.log(now);
+        console.log(date);
+        return date;
+    }
+
+    let prefix = "out";
     if(formatter.get_type() === "past"){
         prefix = "came out";
     }
     else if(formatter.get_type() === "future"){
         prefix = "coming";
     }
-    return formatter ? prefix + " "+formatter.get_range_name() : date;
+
+    return prefix + " "+formatter.get_range_name();
 }
 
 export {
