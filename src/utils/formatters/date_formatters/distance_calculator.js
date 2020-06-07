@@ -16,3 +16,7 @@ export function get_sunday_of_week(date, week_shift){
     sunday.setDate(sunday.getDate() + (7 * week_shift));
     return sunday;
 }
+
+export function last_day_of_next_month(date){
+    return new Date(date.getFullYear(), date.getMonth() + 2, 0);
+}

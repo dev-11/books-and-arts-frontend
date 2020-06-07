@@ -8,6 +8,11 @@ function get_smart_date(date) {
 
     let formatter = formatters.find((item) => item.in_range());
 
+    if(formatter === undefined){
+        console.log(date);
+        return date;
+    }
+
     let prefix = "out";
     if(formatter.get_type() === "past"){
         prefix = "came out";
