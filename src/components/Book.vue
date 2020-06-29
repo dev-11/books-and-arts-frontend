@@ -64,13 +64,26 @@
                     <div v-if="show_smart_publication_date">{{ this.formatted_publication_date }}</div>
                     <div v-else>{{ details.published_at }}</div>
                   </div>
-                  <div @click="get_random_genre">
-                    <b-icon-pencil-square />
-                    {{ random_genre }}
+                  <div class="grid" @click="get_random_genre">
+                    <div class="row">
+                        <div class="col-sm-1">
+                          <b-icon-pencil-square />
+                        </div>
+                        <div class="col-sm-10 ml-1 p-0">
+                          {{ random_genre }}
+                        </div>
+                    </div>
                   </div>
-                  <div>
-                    <b-icon-bookmark /> {{section}}
-                 </div>
+                  <div class="grid">
+                    <div class="row">
+                        <div class="col-sm-1">
+                          <b-icon-bookmark /> 
+                        </div>
+                        <div class="col-sm-10 ml-1 p-0">
+                          {{section}}
+                        </div>
+                    </div>
+                  </div>
                   <div
                     class="mb-3"
                     v-if="Object.keys(details.rating).length !== 0"
