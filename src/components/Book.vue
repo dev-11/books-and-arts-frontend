@@ -7,14 +7,14 @@
        <div class="corner m-2" @click="toogle_liked">
         <favourite v-bind:checked="is_liked"/>
       </div>
-      <!-- <div class="container" style="background: #eef1e6;">
-        {{section}}
-      </div>-->
       <div>
         <div class="card-body">
           <div class="card-text text-truncate">{{ details.title }}</div>
           <div class="card-text text-truncate font-italic">{{ details.authors }}</div>
         </div>
+        <!-- <div class="badge badge-success badge-pill">
+          {{section}}
+        </div> -->
       </div>
     </div>
     <b-modal
@@ -64,9 +64,25 @@
                     <div v-if="show_smart_publication_date">{{ this.formatted_publication_date }}</div>
                     <div v-else>{{ details.published_at }}</div>
                   </div>
-                  <div @click="get_random_genre">
-                    <b-icon-pencil-square />
-                    {{ random_genre }}
+                  <div class="grid" @click="get_random_genre">
+                    <div class="row">
+                        <div class="col-sm-1">
+                          <b-icon-pencil-square />
+                        </div>
+                        <div class="col-sm-10 ml-1 p-0">
+                          {{ random_genre }}
+                        </div>
+                    </div>
+                  </div>
+                  <div class="grid">
+                    <div class="row">
+                        <div class="col-sm-1">
+                          <b-icon-bookmark /> 
+                        </div>
+                        <div class="col-sm-10 ml-1 p-0">
+                          {{section}}
+                        </div>
+                    </div>
                   </div>
                   <div
                     class="mb-3"
@@ -97,9 +113,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div style="background: #eef1e6;">
-              {{section}}
-            </div>-->
             <div class="mt-3 mb-3" v-if="details.desc !== undefined">
               <p v-bind:key="line" v-for="line in details.desc.split('\n')">{{line}}</p>
             </div>
@@ -127,6 +140,7 @@ export default {
       prev_index: 0,
       show_smart_publication_date: true,
       details: this.info.data,
+      section: this.info.section,
       is_liked: false,
       is_visible: true
     };
