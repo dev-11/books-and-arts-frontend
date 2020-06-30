@@ -26,7 +26,8 @@ const options =  {
                     "work_ratings_count": 603,
                     "average_rating": "3.91"
                 }
-            }
+            },
+            section: "Test section"
         }
     },
     stubs: [
