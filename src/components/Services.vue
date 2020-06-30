@@ -91,6 +91,7 @@ export default {
                 data: book,
                 section: section.section,
                 type: service.service_type,
+                family: service.family,
                 id:
                   book.id +
                   service.full_name +
@@ -111,6 +112,7 @@ export default {
               data: exhibition,
               section: service.data.section,
               type: service.service_type,
+              family: service.family,
               id: exhibition.id + service.full_name
             });
           });

@@ -84,6 +84,16 @@
                         </div>
                     </div>
                   </div>
+                  <div class="grid">
+                    <div class="row">
+                        <div class="col-sm-1">
+                          <b-icon-at /> 
+                        </div>
+                        <div class="col-sm-10 ml-1 p-0 capitalize_first_word">
+                          {{family}}
+                        </div>
+                    </div>
+                  </div>
                   <div
                     class="mb-3"
                     v-if="Object.keys(details.rating).length !== 0"
@@ -141,6 +151,7 @@ export default {
       show_smart_publication_date: true,
       details: this.info.data,
       section: this.info.section,
+      family: this.info.family,
       is_liked: false,
       is_visible: true
     };
