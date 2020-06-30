@@ -150,7 +150,6 @@ export default {
       prev_index: 0,
       show_smart_publication_date: true,
       details: this.info.data,
-      section: this.info.section,
       family: this.info.family,
       is_liked: false,
       is_visible: true
@@ -162,6 +161,9 @@ export default {
       let date = new Date(+d[2], +d[1] - 1, +d[0]);
       date.setHours(0,0,0,0);
       return get_smart_date(date);
+    },
+    section: function(){
+     return  this.info.section.replace(/^(Our )/i, "")
     }
   },
   props: {
