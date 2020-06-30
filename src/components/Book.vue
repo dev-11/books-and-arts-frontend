@@ -163,7 +163,7 @@ export default {
       return get_smart_date(date);
     },
     section: function(){
-     return  this.info.section.replace(/^(Our )/i, "")
+     return this.info.section.replace(/^(Our )/i, "");
     }
   },
   props: {
