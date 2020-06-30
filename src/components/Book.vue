@@ -74,7 +74,7 @@
                         </div>
                     </div>
                   </div>
-                  <div class="grid">
+                  <div class="grid mt-2">
                     <div class="row">
                         <div class="col-sm-1">
                           <b-icon-bookmark /> 
@@ -95,7 +95,7 @@
                     </div>
                   </div>
                   <div
-                    class="mb-3"
+                    class="mb-3 mt-2"
                     v-if="Object.keys(details.rating).length !== 0"
                     style="float: left;"
                   >
@@ -108,7 +108,7 @@
                     <!-- <b-icon-eye-slash/>
                     <b-icon-eye/> -->
                   </div>
-                  <div class="mb-3" v-else style="float: left;">
+                  <div class="mb-3 mt-2" v-else style="float: left;">
                     <rating
                       v-bind:rating="'0.00'"
                       v-bind:ratings_count="0"
