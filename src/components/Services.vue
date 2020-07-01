@@ -92,6 +92,7 @@ export default {
                 section: section.section,
                 type: service.service_type,
                 family: service.family,
+                is_book_of_the_month: service.service === 'books_of_the_month',
                 id:
                   book.id +
                   service.full_name +

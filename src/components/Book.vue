@@ -2,6 +2,9 @@
   <div class="card mt-3 mb-3 ml-3 mr-3 border-0 rounded-0" style="width: 200px;" v-if="is_visible">
     <div>
       <div class="image-box" v-b-modal="info.id">
+        <div v-if="info.is_book_of_the_month" class="corner-left m-2 dot centered"  v-b-tooltip.hover v-b-tooltip.right v-bind:title="section">
+            <b-icon-gem class="text-white"/>
+        </div>
         <img v-bind:src="details.img" onerror="this.src='./assets/cover_coming_soon.jpg';"/>
       </div>
        <div class="corner m-2" @click="toogle_liked">
@@ -12,9 +15,6 @@
           <div class="card-text text-truncate">{{ details.title }}</div>
           <div class="card-text text-truncate font-italic">{{ details.authors }}</div>
         </div>
-        <!-- <div class="badge badge-success badge-pill">
-          {{section}}
-        </div> -->
       </div>
     </div>
     <b-modal
@@ -105,8 +105,6 @@
                       style="float: left;"
                       id="tooltip-target"
                     />
-                    <!-- <b-icon-eye-slash/>
-                    <b-icon-eye/> -->
                   </div>
                   <div class="mb-3 mt-2" v-else style="float: left;">
                     <rating
@@ -231,16 +229,26 @@ div:active {
   box-shadow: none;
 }
 
-.checked {
-  color: orange;
-}
-
 .capitalize_first_word:first-letter {
   text-transform: capitalize;
 }
 
 .corner{
   float: right;
+}
+
+.corner-left{
+  float: left;
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #8a9d56;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center
 }
 
 .close-button{
